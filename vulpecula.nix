@@ -1,4 +1,5 @@
 { nixpkgs
+, nixvim
 , home-manager
 , nixgl
 }:
@@ -105,6 +106,8 @@ in
 home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
   modules = [
+    nixvim.homeManagerModules.nixvim
+    ./nixvim.nix
     home
   ];
 }
