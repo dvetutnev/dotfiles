@@ -22,6 +22,16 @@ let
       };
     };
 
+    programs.bat = {
+      enable = true;
+      config = {
+        theme = "Solarized (dark)";
+      };
+      extraPackages = with pkgs.bat-extras; [
+       batdiff
+     ];
+    };
+
     programs.vim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [
@@ -71,8 +81,6 @@ let
       curl
       tree
       wireguard-tools
-      bat
-      bat-extras.batdiff
       graphviz
       gnome.pomodoro
     ];
