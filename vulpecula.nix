@@ -68,6 +68,8 @@ let
     home.packages = with pkgs; [
       (nixGLWrap qtcreator)
       (nixGLWrap mpv)
+      (nixGLWrap tdesktop)
+      (nixGLWrap google-chrome)
       keepassxc
       obsidian
       minicom
