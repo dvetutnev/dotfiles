@@ -26,6 +26,7 @@
     };
     extraPlugins = with pkgs.vimPlugins; [
       vim-solarized8
+      nvim-web-devicons
     ];
     colorscheme = "solarized8_flat";
     options.termguicolors = true;

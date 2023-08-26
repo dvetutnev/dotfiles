@@ -28,8 +28,8 @@ let
         theme = "Solarized (dark)";
       };
       extraPackages = with pkgs.bat-extras; [
-       batdiff
-     ];
+        batdiff
+      ];
     };
 
     programs.vim = {
@@ -85,10 +85,13 @@ let
       wireguard-tools
       graphviz
       gnome.pomodoro
+      hackgen-nf-font
     ];
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+
+    fonts.fontconfig.enable = true;
 
     services.syncthing.enable = true;
 
@@ -121,4 +124,3 @@ home-manager.lib.homeManagerConfiguration {
     home
   ];
 }
-

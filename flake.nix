@@ -25,9 +25,24 @@
     inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = { self, ... } @inputs: {
+  outputs = { self, nixpkgs, ... } @inputs:
+  {
     homeConfigurations."dvetutnev@vulpecula" = with inputs; import ./vulpecula.nix {
       inherit nixpkgs nixvim home-manager nixgl;
+    };
+    devShells."x86_64-linux".nvim = 
+    let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+    in
+    with pkgs; mkShell {
+      nativeBuildInputs = [
+        nixd
+        nixpkgs-fmt
+        (import ./nvim.nix { inherit pkgs; })
+      ];
     };
   };
 }
