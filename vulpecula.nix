@@ -41,6 +41,7 @@ let
       (nixGLWrap tdesktop)
       (nixGLWrap google-chrome)
       nvim
+      (nixGLWrap neovide)
       keepassxc
       obsidian
       minicom
