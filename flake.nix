@@ -25,6 +25,7 @@
     homeConfigurations."dvetutnev@vulpecula" = with inputs; import ./vulpecula.nix {
       inherit nixpkgs home-manager nixgl;
     };
+
     devShells."x86_64-linux".nvim =
     let
       pkgs = import nixpkgs {
@@ -36,6 +37,26 @@
       nativeBuildInputs = [
         nixd
         nixpkgs-fmt
+        (import ./nvim.nix { inherit pkgs; })
+      ];
+    };
+
+    devShells."x86_64-linux"."42" =
+    let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+      compiler = with pkgs; (overrideCC stdenv gcc13);
+    in
+    with pkgs; mkShell.override { stdenv = compiler; } {
+      nativeBuildInputs = [
+        compiler
+        cmake
+        ninja
+        gdb
+        clang-tools_16
+        cmake-format
         (import ./nvim.nix { inherit pkgs; })
       ];
     };
