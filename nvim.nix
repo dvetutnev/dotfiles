@@ -26,6 +26,7 @@ let
       expandtab = true,
       smarttab = true,
       autoindent = true,
+      smartindent = true,
       -- Line numbers
       number = true,
       relativenumber = true,
