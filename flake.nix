@@ -9,11 +9,6 @@
     url = "github:numtide/flake-utils";
   };
 
-  inputs.nixvim = {
-    url = "github:nix-community/nixvim";
-    inputs.flake-utils.follows = "flake-utils";
-  };
-
   inputs.home-manager = {
     url = "github:nix-community/home-manager";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -28,9 +23,9 @@
   outputs = { self, nixpkgs, ... } @inputs:
   {
     homeConfigurations."dvetutnev@vulpecula" = with inputs; import ./vulpecula.nix {
-      inherit nixpkgs nixvim home-manager nixgl;
+      inherit nixpkgs home-manager nixgl;
     };
-    devShells."x86_64-linux".nvim = 
+    devShells."x86_64-linux".nvim =
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";

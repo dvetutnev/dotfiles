@@ -1,5 +1,4 @@
 { nixpkgs
-, nixvim
 , home-manager
 , nixgl
 }:
@@ -10,8 +9,12 @@ let
     inherit system;
     config.allowUnfree = true;
   };
+
   mkNixGLWrapper = pkgs.callPackage ./mkNixGLWrapper.nix { };
   nixGLWrap = mkNixGLWrapper nixgl.packages.${system}.nixGLIntel;
+
+  nvim = pkgs.callPackage ./nvim.nix { };
+
   home = {
     programs.git = {
       enable = true;
@@ -32,44 +35,12 @@ let
       ];
     };
 
-    programs.vim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        vim-lastplace
-        vim-which-key
-        vim-better-whitespace
-      ];
-      extraConfig = ''
-        " your custom vimrc
-        set nocompatible
-        set backspace=indent,eol,start
-        " Turn on syntax highlighting by default
-        syntax on
-        " Tab key & indent
-        set tabstop=2
-        set shiftwidth=2
-        set expandtab
-        set smarttab
-        set smartindent
-        " Show tabs
-        set list
-        set listchars=tab:>-
-        " whichkey
-        set timeoutlen=500
-        let g:mapleader = "\<Space>"
-        let g:maplocalleader = ','
-        nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-        nnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
-        " ...
-      '';
-    };
-
     home.packages = with pkgs; [
       (nixGLWrap qtcreator)
       (nixGLWrap mpv)
       (nixGLWrap tdesktop)
       (nixGLWrap google-chrome)
+      nvim
       keepassxc
       obsidian
       minicom
@@ -119,8 +90,6 @@ in
 home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
   modules = [
-    nixvim.homeManagerModules.nixvim
-    ./nixvim.nix
     home
   ];
 }
