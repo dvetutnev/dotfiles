@@ -35,6 +35,25 @@ let
       ];
     };
 
+    programs.bash = {
+      enable = true;
+      bashrcExtra = ''
+        detach()
+        {
+          nohup $1 >/dev/null 2>&1 &
+        }
+      '';
+    };
+    programs.dircolors.enable = true;
+    home.shellAliases = {
+      ls = "ls --color=auto";
+      grep = "grep --color=auto";
+      fgrep = "fgrep --color=auto";
+      egrep = "egrep --color=auto";
+      diff = "diff --color=auto";
+      ip = "ip -color=auto";
+    };
+
     home.packages = with pkgs; [
       (nixGLWrap qtcreator)
       (nixGLWrap mpv)
