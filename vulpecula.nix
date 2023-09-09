@@ -71,6 +71,10 @@ let
       ip = "ip -color=auto";
     };
 
+    home.sessionVariables = {
+      EDITOR = "nvim";
+    };
+
     home.packages = with pkgs; [
       (nixGLWrap qtcreator)
       (nixGLWrap mpv)
