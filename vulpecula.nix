@@ -96,7 +96,7 @@ let
       tree
       wireguard-tools
       graphviz
-      gnome.pomodoro
+#      gnome.pomodoro
       hackgen-nf-font
     ];
 
