@@ -20,33 +20,46 @@
     inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = { self, nixpkgs, ... } @inputs:
-  {
-    homeConfigurations."dvetutnev@vulpecula" = with inputs; import ./vulpecula.nix {
-      inherit nixpkgs home-manager nixgl;
+  outputs = { self, nixpkgs, nixgl, home-manager, ... } @inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
     };
 
-    devShells."x86_64-linux".nvim =
-    let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
+    mkNixGLWrapper = pkgs.callPackage ./mkNixGLWrapper.nix {};
+    nixGLWrap = mkNixGLWrapper nixgl.packages.${system}.nixGLIntel;
+  in
+  {
+    lib.nixGLWrap = nixGLWrap;
+
+    packages.${system}.nvim = pkgs.callPackage ./nvim.nix {};
+
+    nixosModules.home = import ./home.nix;
+
+    homeConfigurations."dvetutnev@vulpecula" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = {
+        nixGLWrap = self.lib.nixGLWrap;
+        nvim = self.packages.${system}.nvim;
       };
-    in
-    with pkgs; mkShell {
+      modules = [
+        self.nixosModules.home
+        ./vulpecula.nix
+      ];
+    };
+
+    devShells."x86_64-linux".nvim = with pkgs; mkShell {
       nativeBuildInputs = [
         nixd
         nixpkgs-fmt
-        (import ./nvim.nix { inherit pkgs; })
+        nvim
       ];
     };
 
     devShells."x86_64-linux"."42" =
     let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
       compiler = with pkgs; (overrideCC stdenv gcc13);
     in
     with pkgs; mkShell.override { stdenv = compiler; } {
@@ -57,7 +70,7 @@
         gdb
         clang-tools_16
         cmake-format
-        (import ./nvim.nix { inherit pkgs; })
+        self.packages.${system}.nvim
       ];
     };
   };
