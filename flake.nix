@@ -77,6 +77,7 @@
         self.packages.${system}.nvim
         git
         (nixGLWrap qtcreator)
+        (callPackage ./conan_1.nix {})
       ];
     };
 
