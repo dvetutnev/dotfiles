@@ -72,6 +72,8 @@
         clang-tools_16
         cmake-format
         self.packages.${system}.nvim
+        git
+        (nixGLWrap qtcreator)
       ];
     };
   };
