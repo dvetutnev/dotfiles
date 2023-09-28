@@ -33,12 +33,13 @@
   in
   {
     lib.nixGLWrap = nixGLWrap;
+    lib.homeManagerConfiguration = home-manager.lib.homeManagerConfiguration;
 
     packages.${system}.nvim = pkgs.callPackage ./nvim.nix {};
 
     nixosModules.home = import ./home.nix;
 
-    homeConfigurations."dvetutnev@vulpecula" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."dvetutnev@vulpecula" = self.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
         nixGLWrap = self.lib.nixGLWrap;
