@@ -35,7 +35,10 @@
     lib.nixGLWrap = nixGLWrap;
     lib.homeManagerConfiguration = home-manager.lib.homeManagerConfiguration;
 
-    packages.${system}.nvim = pkgs.callPackage ./nvim.nix {};
+    packages.${system} = {
+      nvim = pkgs.callPackage ./nvim.nix {};
+      tg = (nixGLWrap pkgs.tdesktop);
+    };
 
     nixosModules.home = import ./home.nix;
 
@@ -76,6 +79,7 @@
         (nixGLWrap qtcreator)
       ];
     };
+
   };
 }
 
