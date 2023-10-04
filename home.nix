@@ -101,5 +101,10 @@
     # (fixing local issues, settings XDG_DATA_DIRS, etc.):
     targets.genericLinux.enable = true;
 
+    nix = {
+      package = pkgs.nix;
+      settings.experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+    };
+
   };
 }
