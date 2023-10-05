@@ -67,6 +67,7 @@
     };
 
     home.packages = with pkgs; [
+      config.nix.package
       nvim
       (nixGLWrap neovide)
       (nixGLWrap qtcreator)
@@ -102,6 +103,7 @@
     targets.genericLinux.enable = true;
 
     nix = {
+      enable = true;
       package = pkgs.nix;
       settings.experimental-features = [ "nix-command" "flakes" "repl-flake" ];
     };

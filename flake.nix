@@ -22,10 +22,21 @@
 
   outputs = { self, nixpkgs, nixgl, home-manager, ... } @inputs:
   let
+    nixOverlay = final: prev:
+    {
+      nix = prev.nix.overrideAttrs (old: {
+        patches = (old.patches or []) ++ [
+          ./enable_at_in_path.patch
+        ];
+      });
+    };
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
+      overlays = [
+        nixOverlay
+      ];
     };
 
     mkNixGLWrapper = pkgs.callPackage ./mkNixGLWrapper.nix {};
@@ -38,6 +49,7 @@
     packages.${system} = {
       nvim = pkgs.callPackage ./nvim.nix {};
       tg = (nixGLWrap pkgs.tdesktop);
+      nix = pkgs.nix;
     };
 
     nixosModules.home = import ./home.nix;
