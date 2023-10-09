@@ -74,8 +74,8 @@
       (nixGLWrap mpv)
       (nixGLWrap tdesktop)
       (nixGLWrap google-chrome)
+      (nixGLWrap obsidian)
       keepassxc
-      obsidian
       cppcheck
       clang-tools_16
       cmake-format
