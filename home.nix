@@ -88,6 +88,7 @@
       graphviz
 #      gnome.pomodoro
       hackgen-nf-font
+      source-code-pro
     ];
 
     # Let Home Manager install and manage itself.
