@@ -75,6 +75,7 @@
       (nixGLWrap tdesktop)
       (nixGLWrap google-chrome)
       (nixGLWrap obsidian)
+      lazarus
       keepassxc
       cppcheck
       clang-tools_16
