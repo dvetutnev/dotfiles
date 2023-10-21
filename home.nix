@@ -66,6 +66,12 @@
       EDITOR = "nvim";
     };
 
+    programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
+
     home.packages = with pkgs; [
       config.nix.package
       nvim
