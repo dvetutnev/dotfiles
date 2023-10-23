@@ -42,16 +42,17 @@
     mkNixGLWrapper = pkgs.callPackage ./mkNixGLWrapper.nix {};
     nixGLWrap = mkNixGLWrapper nixgl.packages.${system}.nixGLIntel;
 
-    cppDevShell = compiler:
-      with pkgs; mkShell.override { stdenv = compiler; } {
-        nativeBuildInputs = [
+    cppDevShell = compiler: conan:
+      pkgs.mkShell.override { stdenv = compiler; } {
+        nativeBuildInputs = with pkgs; [
           compiler
           cmake
           ninja
           gdb
           clang-tools_16
           cmake-format
-          (callPackage ./conan_1.nix {})
+        ] ++ [
+          conan
         ];
       };
   in
@@ -91,7 +92,14 @@
     let
       compiler = with pkgs; (overrideCC stdenv gcc_latest);
     in
-      cppDevShell compiler;
+      cppDevShell compiler pkgs.conan;
+
+    devShells."x86_64-linux".gcc_latest_1 =
+    let
+      compiler = with pkgs; (overrideCC stdenv gcc_latest);
+      conan  = (pkgs.callPackage ./conan_1.nix {});
+    in
+      cppDevShell compiler conan;
 
     devShells."x86_64-linux".clang16 = cppDevShell pkgs.llvmPackages_16.libcxxStdenv;
 
