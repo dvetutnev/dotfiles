@@ -91,8 +91,9 @@
     devShells."x86_64-linux".gcc_latest =
     let
       compiler = with pkgs; (overrideCC stdenv gcc_latest);
-    in
-      cppDevShell compiler pkgs.conan;
+      conan  = (pkgs.callPackage ./conan_2.nix {});
+   in
+      cppDevShell compiler conan;
 
     devShells."x86_64-linux".gcc_latest_1 =
     let
