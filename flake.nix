@@ -104,6 +104,8 @@
 
     devShells."x86_64-linux".clang16 = cppDevShell pkgs.llvmPackages_16.libcxxStdenv;
 
+    templates.gcc_latest_1.path = ./gcc_latest_1;
+
   };
 }
 
