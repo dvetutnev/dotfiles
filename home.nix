@@ -93,6 +93,7 @@
       tree
       wireguard-tools
       graphviz
+      plantuml
 #      gnome.pomodoro
       hackgen-nf-font
       source-code-pro
