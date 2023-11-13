@@ -44,6 +44,7 @@
 
     cppDevShell = compiler: conan:
       pkgs.mkShell.override { stdenv = compiler; } {
+        hardeningDisable = [ "all" ];
         nativeBuildInputs = with pkgs; [
           compiler
           cmake
