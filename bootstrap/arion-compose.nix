@@ -20,7 +20,7 @@ let
     }
   '';
 
-  nginxContainer = pkgs.dockerTools.buildImage {
+  proxyImage = pkgs.dockerTools.buildImage {
     name = "nix-nginx";
     copyToRoot = with pkgs; buildEnv {
       name = "image-root";
@@ -47,18 +47,45 @@ let
       };
     };
   };
+
+  debianImage = pkgs.dockerTools.pullImage {
+    imageName = "debian";
+    imageDigest =
+      "sha256:bac353db4cc04bc672b14029964e686cd7bad56fe34b51f432c1a1304b9928da";
+    sha256 = "14g5xjxk3r64flannliw3b6bwx9d2zmb7c2ryqklndqs54rq0v6m";
+  };
+
+  workstationImage = pkgs.dockerTools.buildImage {
+    name = "workstation";
+    fromImage = debianImage;
+    runAsRoot = ''
+      sed -i -r 's|http://deb.debian.org/(.*)|http://proxy/from_debian/\1|' \
+        /etc/apt/sources.list.d/debian.sources
+    '';
+#    runAsRoot = ''
+#      apt update && apt upgrade &&
+#      apt install iputils-ping curl
+#    '';
+  };
 in
 {
   project.name = "nix-bootstrap";
   services = {
     proxy = {
-      build.image = lib.mkForce (nginxContainer);
-      #service.ports = [ "80:80" ];
+      build.image = lib.mkForce (proxyImage);
       service.networks = [
         "internet"
         "intranet"
       ];
+    };
+
+    workstation = {
+      build.image = lib.mkForce (workstationImage);
+      service.networks = [
+        "intranet"
+      ];
       service.tty = true;
+      service.command = "sleep infinity";
     };
   };
 
