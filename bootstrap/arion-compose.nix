@@ -1,6 +1,5 @@
 { pkgs, lib, ... }:
 let
-  nginxWebRoot = pkgs.writeTextDir "index.html" "Hello World! (nginx in docker by Nix)";
   nginxPort = "80";
   nginxConf = pkgs.writeText "nginx.conf" ''
     user nobody nobody;
@@ -12,13 +11,10 @@ let
       access_log /dev/stdout;
       server {
         listen ${nginxPort};
-        index index.html;
-        location / {
-          root ${nginxWebRoot};
-        }
         location /from_debian/ {
           proxy_pass http://deb.debian.org/;
         }
+        # https://serverfault.com/questions/423265/how-to-follow-http-redirects-inside-nginx
         location /from_github/ {
           proxy_pass https://github.com/;
           proxy_ssl_server_name on;
@@ -55,9 +51,6 @@ let
 
     config = {
       Cmd = [ "nginx" "-c" nginxConf ];
-      ExposedPorts = {
-        "${nginxPort}/tcp" = { };
-      };
     };
   };
 
