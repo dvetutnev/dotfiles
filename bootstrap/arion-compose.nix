@@ -16,6 +16,20 @@ let
         location / {
           root ${nginxWebRoot};
         }
+        location /from_debian/ {
+          proxy_pass http://deb.debian.org/;
+        }
+        location /from_github/ {
+          proxy_pass https://github.com/;
+          proxy_ssl_server_name on;
+          proxy_intercept_errors on;
+          error_page 301 302 307 = @handle_redirect;
+        }
+        location @handle_redirect {
+          set $saved_redirect_location '$upstream_http_location';
+          resolver 8.8.8.8;
+          proxy_pass $saved_redirect_location;
+        }
       }
     }
   '';
@@ -41,7 +55,6 @@ let
 
     config = {
       Cmd = [ "nginx" "-c" nginxConf ];
-      #Cmd = [ "sh" ];
       ExposedPorts = {
         "${nginxPort}/tcp" = { };
       };
@@ -62,10 +75,6 @@ let
       sed -i -r 's|http://deb.debian.org/(.*)|http://proxy/from_debian/\1|' \
         /etc/apt/sources.list.d/debian.sources
     '';
-#    runAsRoot = ''
-#      apt update && apt upgrade &&
-#      apt install iputils-ping curl
-#    '';
   };
 in
 {
