@@ -1,3 +1,4 @@
+{ pkgs ? import <nixpkgs> {} }:
 let
   a = 42;
   replacements = [
@@ -10,17 +11,25 @@ let
       substitution = "https://proxy/example/$1";
     }
   ];
-  findReplacements = replacements: url: { origin = 43; };
+  findReplacements = with pkgs; replacemens: url:
+   lib.findFirst (x: (builtins.match x.origin url) != null) null replacements;
+
   substituteUrl = replacements: url: url;
 in
 {
-  testFindReplacements43 = {
+  testFindReplacements1 = {
     expr = builtins.getAttr "origin"
       (findReplacements replacements
         "https://github.com/git/git/archive/refs/tags/v2.43.0.tar.gz");
-    expected = 43;
- };
- testA = let b = 42; in {
+    expected = "https://github.com/(.*)";
+  };
+  testFindReplacements2 = {
+    expr = builtins.getAttr "origin"
+      (findReplacements replacements
+        "https://example.org/archive.tar.gz");
+    expected = "https://example.org/(.*)";
+  };
+  testA = let b = 42; in {
     expr = b;
     expected = 42;
   };
