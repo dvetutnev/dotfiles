@@ -17,25 +17,14 @@ let
   substituteUrl = replacements: url:
   let
     replacement = findSubstitute replacements url;
-    newUrl = (builtins.replaceStrings [ "$1" ] (builtins.match replacement.origin url)
-      replacement.substitution);
   in
-  { url = newUrl; };
+  pkgs.lib.throwIf (replacement == null) "Can`t replace url '${url}'"
+  {
+    url = builtins.replaceStrings [ "$1" ] (builtins.match replacement.origin url)
+      replacement.substitution;
+  };
 in
 {
-  testFindSubstitute1 = {
-    expr = builtins.getAttr "origin"
-      (findSubstitute replacements
-        "https://github.com/git/git/archive/refs/tags/v2.43.0.tar.gz");
-    expected = "https://github.com/(.*)";
-  };
-  testFindSubstitute2 = {
-    expr = builtins.getAttr "origin"
-      (findSubstitute replacements
-        "https://example.org/archive.tar.gz");
-    expected = "https://example.org/(.*)";
-  };
-
   testSubstituteUrl1 = {
     expr = builtins.getAttr "url"
       (substituteUrl replacements
@@ -52,21 +41,6 @@ in
   testSubstituteUrlNotFound = {
     expr = builtins.tryEval
       (substituteUrl replacements "https://unknown_host/path/");
-    expected = { success = false; result = false; };
-  };
-
-  testA = let b = 42; in {
-    expr = b;
-    expected = 42;
-  };
-  test1 = {
-    expr = { a = ''b''; };
-    expected = { a = "b"; };
-  };
-
-  testThrow = {
-    expr = throw "aa 42 bb";
-    expectedError.type = "ThrownError";
-    expectedError.msg = "42";
+    expected = { success = false; value = false; };
   };
 }
