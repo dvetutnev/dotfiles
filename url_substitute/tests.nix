@@ -16,9 +16,11 @@ let
 
   substituteUrl = replacements: url:
   let
-    substitute_ = findSubstitute replacements;
+    replacement = findSubstitute replacements url;
+    newUrl = (builtins.replaceStrings [ "$1" ] (builtins.match replacement.origin url)
+      replacement.substitution);
   in
-  { inherit url; };
+  { url = newUrl; };
 in
 {
   testFindSubstitute1 = {
@@ -44,7 +46,7 @@ in
   testSubstituteUrl2 = {
     expr = builtins.getAttr "url"
       (substituteUrl replacements
-        "https://example.com/archive.tar.gz");
+        "https://example.org/archive.tar.gz");
     expected = "https://proxy/example/archive.tar.gz";
   };
 
