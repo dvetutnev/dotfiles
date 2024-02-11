@@ -49,6 +49,11 @@ in
         "https://example.org/archive.tar.gz");
     expected = "https://proxy/example/archive.tar.gz";
   };
+  testSubstituteUrlNotFound = {
+    expr = builtins.tryEval
+      (substituteUrl replacements "https://unknown_host/path/");
+    expected = { success = false; result = false; };
+  };
 
   testA = let b = 42; in {
     expr = b;
