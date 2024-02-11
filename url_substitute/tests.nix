@@ -11,24 +11,43 @@ let
       substitution = "https://proxy/example/$1";
     }
   ];
-  findReplacements = with pkgs; replacemens: url:
+  findSubstitute = with pkgs; replacemens: url:
    lib.findFirst (x: (builtins.match x.origin url) != null) null replacements;
 
-  substituteUrl = replacements: url: url;
+  substituteUrl = replacements: url:
+  let
+    substitute_ = findSubstitute replacements;
+  in
+  { inherit url; };
 in
 {
-  testFindReplacements1 = {
+  testFindSubstitute1 = {
     expr = builtins.getAttr "origin"
-      (findReplacements replacements
+      (findSubstitute replacements
         "https://github.com/git/git/archive/refs/tags/v2.43.0.tar.gz");
     expected = "https://github.com/(.*)";
   };
-  testFindReplacements2 = {
+  testFindSubstitute2 = {
     expr = builtins.getAttr "origin"
-      (findReplacements replacements
+      (findSubstitute replacements
         "https://example.org/archive.tar.gz");
     expected = "https://example.org/(.*)";
   };
+
+  testSubstituteUrl1 = {
+    expr = builtins.getAttr "url"
+      (substituteUrl replacements
+        "https://github.com/git/git/archive/refs/tags/v2.43.0.tar.gz");
+    expected =
+      "https://proxy/from_github/git/git/archive/refs/tags/v2.43.0.tar.gz";
+  };
+  testSubstituteUrl2 = {
+    expr = builtins.getAttr "url"
+      (substituteUrl replacements
+        "https://example.com/archive.tar.gz");
+    expected = "https://proxy/example/archive.tar.gz";
+  };
+
   testA = let b = 42; in {
     expr = b;
     expected = 42;
