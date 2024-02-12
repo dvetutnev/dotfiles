@@ -1,6 +1,5 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  a = 42;
   replacements = [
     {
       origin = "https://github.com/(.*)";
@@ -11,8 +10,8 @@ let
       substitution = "https://proxy/example/$1";
     }
   ];
-  findSubstitute = with pkgs; replacemens: url:
-   lib.findFirst (x: (builtins.match x.origin url) != null) null replacements;
+  findSubstitute = replacemens: url:
+   pkgs.lib.findFirst (x: (builtins.match x.origin url) != null) null replacements;
 
   substituteUrl = replacements: url:
   let
@@ -26,21 +25,23 @@ let
 in
 {
   testSubstituteUrl1 = {
-    expr = builtins.getAttr "url"
-      (substituteUrl replacements
-        "https://github.com/git/git/archive/refs/tags/v2.43.0.tar.gz");
-    expected =
-      "https://proxy/from_github/git/git/archive/refs/tags/v2.43.0.tar.gz";
+    expr = substituteUrl replacements
+      "https://github.com/git/git/archive/refs/tags/v2.43.0.tar.gz";
+    expected = {
+      url = "https://proxy/from_github/git/git/archive/refs/tags/v2.43.0.tar.gz";
+    };
   };
   testSubstituteUrl2 = {
-    expr = builtins.getAttr "url"
-      (substituteUrl replacements
-        "https://example.org/archive.tar.gz");
-    expected = "https://proxy/example/archive.tar.gz";
+    expr = substituteUrl replacements
+      "https://example.org/archive.tar.gz";
+    expected = {
+      url = "https://proxy/example/archive.tar.gz";
+    };
   };
   testSubstituteUrlNotFound = {
     expr = builtins.tryEval
       (substituteUrl replacements "https://unknown_host/path/");
+# use expected error from nix-unit
     expected = { success = false; value = false; };
   };
 }
