@@ -39,9 +39,8 @@ in
     };
   };
   testSubstituteUrlNotFound = {
-    expr = builtins.tryEval
-      (substituteUrl replacements "https://unknown_host/path/");
-# use expected error from nix-unit
-    expected = { success = false; value = false; };
+    expr = substituteUrl replacements "https://unknown_host/path/";
+    expectedError.type = "ThrownError";
+    expectedError.msg = "https://unknown_host/path";
   };
 }
