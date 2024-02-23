@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ lib ? import <nixpkgs/lib> }:
 let
   replacements = [
     {
@@ -11,13 +11,13 @@ let
     }
   ];
   findSubstitute = replacemens: url:
-   pkgs.lib.findFirst (x: (builtins.match x.origin url) != null) null replacements;
+   lib.findFirst (x: (builtins.match x.origin url) != null) null replacements;
 
   substituteUrl = replacements: url:
   let
     replacement = findSubstitute replacements url;
   in
-  pkgs.lib.throwIf (replacement == null) "Can`t replace url '${url}'"
+  lib.throwIf (replacement == null) "Can`t replace url '${url}'"
   {
     url = builtins.replaceStrings [ "$1" ] (builtins.match replacement.origin url)
       replacement.substitution;
