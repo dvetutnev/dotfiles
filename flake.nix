@@ -45,16 +45,26 @@
           conan
         ];
       };
+
+    forAllSystems = f:
+      nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+	"aarch64-linux"
+      ] (system: f nixpkgs.legacyPackages.${system});
   in
   {
     lib.nixGLWrap = nixGLWrap;
     lib.homeManagerConfiguration = home-manager.lib.homeManagerConfiguration;
 
-    packages.${system} = {
-      nvim = pkgs.callPackage ./nvim.nix {};
-      tg = (nixGLWrap pkgs.tdesktop);
-      nix = pkgs.nix;
-    };
+    #packages.${system} = {
+    #  nvim = pkgs.callPackage ./nvim.nix {};
+    #  tg = (nixGLWrap pkgs.tdesktop);
+    #  nix = pkgs.nix;
+    #};
+
+    packages = forAllSystems (pkgs: {
+      nvim = pkgs.callPackage ./nvim.nix{};
+    });
 
     nixosModules.home = import ./home.nix;
 
