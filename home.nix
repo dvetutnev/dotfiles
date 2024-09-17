@@ -60,6 +60,7 @@
       egrep = "egrep --color=auto";
       diff = "diff --color=auto";
       ip = "ip -color=auto";
+      vim = "nvim";
     };
 
     home.sessionVariables = {
