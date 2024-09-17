@@ -20,5 +20,20 @@
 
   #programs.git.userName = pkgs.lib.mkForce "x";
   home.packages = [ pkgs.wireguard-tools ];
+
+  programs.borgmatic = {
+    enable = true;
+    backups = {
+      Sync = {
+        location = {
+          sourceDirectories = [ "/home/dvetutnev/Sync" ];
+          #repositories = [ "/home/dvetutnev/Backup Sync" "ssh://dvetutnev@kysa.me/./Backup Sync"];
+          repositories = [ "/home/dvetutnev/Backup Sync" ];
+       };
+        retention.keepDaily = 14;
+      };
+    };
+  };
+  services.borgmatic.enable = true;
 }
 
