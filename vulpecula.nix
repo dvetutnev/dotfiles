@@ -21,6 +21,33 @@
   #programs.git.userName = pkgs.lib.mkForce "x";
   home.packages = [ pkgs.wireguard-tools ];
 
+  programs.ssh = {
+    enable = true;
+    serverAliveInterval = 60;
+    matchBlocks = {
+      github = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = "/home/dvetutnev/.ssh/github.ed25519";
+      };
+      kysa = {
+        hostname = "kysa.me";
+        user = "dvetutnev";
+        identityFile = "/home/dvetutnev/.ssh/nixos.vdsina";
+      };
+      pyxis = {
+        hostname = "192.168.0.200";
+        user = "user";
+        identityFile = "/home/dvetutnev/.ssh/pyxis.ed25519";
+      };
+      racknerd = {
+        hostname = "192.227.172.249";
+        user = "dvetutenv";
+        identityFile = "/home/dvetutev/.ssh/racknerd-c9b981";
+      };
+    };
+  };
+
   programs.borgmatic = {
     enable = true;
     backups = {
