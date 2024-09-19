@@ -2,24 +2,21 @@
 
 ## Flake
 
-ShellSession
-```
+```ShellSession
 $ nix flake update
 $ nix run github:nix-community/nix-unit  -- --flake .#tests
 ```
 
 or
 
-ShellSession
-```
+```ShellSession
 $ nix flake update
 $ nix flake check
 ```
 
 ## Legacy
 
-ShellSession
-```
+```ShellSession
 $ nix run github:nix-community/nix-unit -- tests.nix
 ```
 
