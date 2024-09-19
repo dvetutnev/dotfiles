@@ -2,7 +2,8 @@
 replacements: url:
 let
   findSubstitute = replacements: url:
-   lib.findFirst (x: (builtins.match x.origin url) != null) null replacements;
+  let predicate = x: (builtins.match x.origin url) != null; in
+   lib.findFirst predicate null replacements;
 
   replacement = findSubstitute replacements url;
 in
