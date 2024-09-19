@@ -2,15 +2,27 @@
 
 ## Flake
 
+Do it once create `flake.lock`, before run tests
+
 ```ShellSession
 $ nix flake update
+```
+
+Run tests
+
+```ShellSession
 $ nix run github:nix-community/nix-unit  -- --flake .#tests
 ```
 
-or
+or use this flake
 
 ```ShellSession
-$ nix flake update
+$ nix run ./#nix-unit -- --flake './#tests'
+```
+
+or simple
+
+```ShellSession
 $ nix flake check
 ```
 
@@ -19,4 +31,3 @@ $ nix flake check
 ```ShellSession
 $ nix run github:nix-community/nix-unit -- tests.nix
 ```
-

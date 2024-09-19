@@ -24,6 +24,15 @@
         '';
     };
 
+    packages = system:
+    let
+      testRunner = nix-unit.packages.${system}.default;
+    in
+    {
+      nix-unit = testRunner;
+      default = testRunner;
+    };
+
     forAllSystems = nixpkgs.lib.genAttrs [
       "x86_64-linux"
       "aarch64-linux"
@@ -32,5 +41,6 @@
   {
     inherit tests;
     checks = forAllSystems checks;
+    packages = forAllSystems packages;
   };
 }
