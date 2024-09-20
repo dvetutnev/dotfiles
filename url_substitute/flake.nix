@@ -25,12 +25,8 @@
     };
 
     packages = system:
-    let
-      testRunner = nix-unit.packages.${system}.default;
-    in
     {
-      nix-unit = testRunner;
-      default = testRunner;
+      nix-unit = nix-unit.packages.${system}.default;
     };
 
     forAllSystems = nixpkgs.lib.genAttrs [
