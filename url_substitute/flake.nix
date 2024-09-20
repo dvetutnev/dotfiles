@@ -25,7 +25,11 @@
     };
 
     packages = system:
+    let
+      pkgs = import nixpkgs { inherit system; };
+    in
     {
+      hello = pkgs.hello;
       nix-unit = nix-unit.packages.${system}.default;
     };
 

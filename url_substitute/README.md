@@ -1,4 +1,10 @@
-# Run tests
+# Check substitute url
+
+```ShellSession
+$ nix eval ./#hello.src.urls
+```
+
+# Run unit tests
 
 ## Flake
 
