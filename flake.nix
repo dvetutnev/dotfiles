@@ -80,6 +80,19 @@
       ];
     };
 
+    homeConfigurations.T60 = self.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = "aarch64-linux";
+        config.allowUnfree = true;
+      };
+      extraSpecialArgs = {
+        nvim = self.packages.${system}.nvim;
+      };
+      modules = [
+        ./T60.nix
+      ];
+    };
+
     devShells."x86_64-linux".nvim = with pkgs; mkShell {
       nativeBuildInputs = [
         nixd
