@@ -86,7 +86,7 @@
         config.allowUnfree = true;
       };
       extraSpecialArgs = {
-        nvim = self.packages.${system}.nvim;
+        nvim = self.packages.aarch64-linux.nvim;
       };
       modules = [
         ./T60.nix
