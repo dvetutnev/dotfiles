@@ -1,7 +1,6 @@
 { config
 , pkgs
 , nixGLWrap
-, nvim
 , ...
 }:
 
@@ -60,11 +59,6 @@
       egrep = "egrep --color=auto";
       diff = "diff --color=auto";
       ip = "ip -color=auto";
-      vim = "nvim";
-    };
-
-    home.sessionVariables = {
-      EDITOR = "nvim";
     };
 
     programs.direnv = {
@@ -75,7 +69,6 @@
 
     home.packages = with pkgs; [
       config.nix.package
-      nvim
       (nixGLWrap neovide)
       (nixGLWrap qtcreator)
       (nixGLWrap mpv)
