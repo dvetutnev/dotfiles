@@ -14,13 +14,18 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.nix-on-droid = {
+    url = "github:nix-community/nix-on-droid/release-24.05";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   inputs.nixgl = {
     url = "github:guibou/nixGL";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = { self, nixpkgs, nixgl, home-manager, ... } @inputs:
+  outputs = { self, nixpkgs, nixgl, home-manager, nix-on-droid, ... } @inputs:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -80,17 +85,25 @@
       ];
     };
 
-    homeConfigurations.T60 = self.lib.homeManagerConfiguration {
+#    homeConfigurations.T60 = self.lib.homeManagerConfiguration {
+#      pkgs = import nixpkgs {
+#        system = "aarch64-linux";
+#        config.allowUnfree = true;
+#      };
+#      extraSpecialArgs = {
+#        nvim = self.packages.aarch64-linux.nvim;
+#      };
+#      modules = [
+#        ./T60.nix
+#      ];
+#    };
+
+    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
       pkgs = import nixpkgs {
         system = "aarch64-linux";
-        config.allowUnfree = true;
+        config = { allowUnfree = true; };
       };
-      extraSpecialArgs = {
-        nvim = self.packages.aarch64-linux.nvim;
-      };
-      modules = [
-        ./T60.nix
-      ];
+      modules = [ ./T60.nix ];
     };
 
     devShells."x86_64-linux".nvim = with pkgs; mkShell {

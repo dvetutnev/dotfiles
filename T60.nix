@@ -1,25 +1,42 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  imports = [
-    hm_modules/nvim.nix
+  # Simply install just the packages
+  environment.packages = with pkgs; [
+    # User-facing stuff that you really really want to have
+    vim # or some other editor, e.g. nano or neovim
+
+    # Some common stuff that people expect to have
+    #procps
+    #killall
+    #diffutils
+    #findutils
+    #utillinux
+    #tzdata
+    #hostname
+    #man
+    #gnugrep
+    #gnupg
+    #gnused
+    #gnutar
+    #bzip2
+    #gzip
+    #xz
+    #zip
+    #unzip
   ];
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "nix-on-droid";
-  home.homeDirectory = "/data/data/com.termux.nix/files/home";
+  # Backup etc files instead of failing to activate generation if a file already exists in /etc
+  environment.etcBackupExtension = ".bak";
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "24.05";
+  # Read the changelog before changing this value
+  system.stateVersion = "24.05";
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  # Set up nix for flakes
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
+  # Set your time zone
+  #time.timeZone = "Europe/Berlin";
 }
