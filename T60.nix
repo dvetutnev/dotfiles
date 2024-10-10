@@ -1,4 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config
+, lib
+, pkgs
+, nvim
+, ... }:
 
 {
   # Simply install just the packages
@@ -15,9 +19,28 @@
 
   # Set up nix for flakes
   nix.extraOptions = ''
-    experimental-features = nix-command flakes
+    experimental-features = nix-command flakes repl-flake
   '';
 
   # Set your time zone
-  #time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Moscow";
+
+  home-manager = {
+    useGlobalPkgs = true;
+    #useUserPackages = true;
+    extraSpecialArgs = { inherit nvim; };
+
+    config = { config, pkgs, lib, ... }: {
+      imports = [
+        hm_modules/nvim.nix
+      ];
+
+      #programs.bash.enable = true;
+      programs.git.enable = true;
+      programs.ssh.enable = true;
+
+      # Ahtung! Read HM changlog before editt
+      home.stateVersion = "24.05";
+    };
+  };
 }

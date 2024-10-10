@@ -98,10 +98,13 @@
 #      ];
 #    };
 
-    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
+    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration rec {
       pkgs = import nixpkgs {
         system = "aarch64-linux";
-        config = { allowUnfree = true; };
+        config.allowUnfree = true;
+      };
+      extraSpecialArgs = {
+        nvim = pkgs.callPackage ./nvim.nix {};
       };
       modules = [ ./T60.nix ];
     };
