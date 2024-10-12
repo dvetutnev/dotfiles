@@ -26,8 +26,6 @@
   time.timeZone = "Europe/Moscow";
 
   home-manager = {
-    useGlobalPkgs = true;
-    #useUserPackages = true;
     extraSpecialArgs = { inherit nvim; };
 
     config = { config, pkgs, lib, ... }: {
@@ -35,9 +33,22 @@
         hm_modules/nvim.nix
       ];
 
-      #programs.bash.enable = true;
+      programs.bash.enable = true;
       programs.git.enable = true;
-      programs.ssh.enable = true;
+
+      programs.ssh = {
+        enable = true;
+        package = pkgs.openssh;
+        serverAliveInterval = 60;
+        matchBlocks = {
+          "github.com" = {
+            hostname = "github.com";
+            user = "git";
+            identityFile = "/data/data/com.termux.nix/files/home/.ssh/github.ed25519";
+            identitiesOnly = true;
+          };
+        };
+      };
 
       # Ahtung! Read HM changlog before editt
       home.stateVersion = "24.05";
