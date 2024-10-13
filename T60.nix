@@ -31,10 +31,10 @@
     config = { config, pkgs, lib, ... }: {
       imports = [
         hm_modules/nvim.nix
+        hm_modules/git.nix
       ];
 
       programs.bash.enable = true;
-      programs.git.enable = true;
 
       programs.ssh = {
         enable = true;
