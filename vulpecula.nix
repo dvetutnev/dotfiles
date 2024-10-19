@@ -6,6 +6,7 @@
   imports = [
     hm_modules/nvim.nix
     hm_modules/git.nix
+    hm_modules/bat.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

@@ -32,6 +32,7 @@
       imports = [
         hm_modules/nvim.nix
         hm_modules/git.nix
+        hm_modules/bat.nix
       ];
 
       programs.bash.enable = true;
