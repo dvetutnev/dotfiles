@@ -22,6 +22,11 @@
     experimental-features = nix-command flakes repl-flake
   '';
 
+  terminal.colors = {
+    background = "#002B36";
+    foreground = "#839496";
+  };
+
   # Set your time zone
   time.timeZone = "Europe/Moscow";
 
