@@ -7,6 +7,7 @@
     hm_modules/nvim.nix
     hm_modules/git.nix
     hm_modules/bat.nix
+    hm_modules/dircolors.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

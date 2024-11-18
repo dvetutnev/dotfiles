@@ -8,7 +8,7 @@
   # Simply install just the packages
   environment.packages = with pkgs; [
     # User-facing stuff that you really really want to have
-    vim # or some other editor, e.g. nano or neovim
+    # vim # or some other editor, e.g. nano or neovim
   ];
 
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
@@ -19,7 +19,7 @@
 
   # Set up nix for flakes
   nix.extraOptions = ''
-    experimental-features = nix-command flakes repl-flake
+    experimental-features = nix-command flakes
   '';
 
   terminal.colors = {
@@ -38,6 +38,7 @@
         hm_modules/nvim.nix
         hm_modules/git.nix
         hm_modules/bat.nix
+        hm_modules/dircolors.nix
       ];
 
       programs.bash.enable = true;
