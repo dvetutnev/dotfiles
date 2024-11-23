@@ -62,12 +62,6 @@
     lib.nixGLWrap = nixGLWrap;
     lib.homeManagerConfiguration = home-manager.lib.homeManagerConfiguration;
 
-    #packages.${system} = {
-    #  nvim = pkgs.callPackage ./nvim.nix {};
-    #  tg = (nixGLWrap pkgs.tdesktop);
-    #  nix = pkgs.nix;
-    #};
-
     packages = forAllSystems (pkgs: {
       nvim = pkgs.callPackage ./nvim.nix{};
     });
@@ -85,19 +79,6 @@
         ./vulpecula.nix
       ];
     };
-
-#    homeConfigurations.T60 = self.lib.homeManagerConfiguration {
-#      pkgs = import nixpkgs {
-#        system = "aarch64-linux";
-#        config.allowUnfree = true;
-#      };
-#      extraSpecialArgs = {
-#        nvim = self.packages.aarch64-linux.nvim;
-#      };
-#      modules = [
-#        ./T60.nix
-#      ];
-#    };
 
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration rec {
       pkgs = import nixpkgs {
