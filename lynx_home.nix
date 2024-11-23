@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     hm_modules/nvim.nix
@@ -7,6 +8,18 @@
   ];
 
   programs.bash.enable = true; # for env var and aliases
+  services.syncthing.enable = true;
+  fonts.fontconfig.enable = true;
+
+  home.packages = with pkgs; [
+    keepassxc
+    google-chrome
+    tdesktop
+    obsidian
+    # fonts
+    hackgen-nf-font
+    source-code-pro
+  ];
 
   home.username = "dvetutnev";
   home.homeDirectory = "/home/dvetutnev";
