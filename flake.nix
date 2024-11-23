@@ -110,6 +110,18 @@
       modules = [ ./T60.nix ];
     };
 
+    nixosConfigurations.lynx = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        lynx/configuration.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.dvetutnev = import ./lynx_home.nix;
+        }
+      ];
+    };
+
     devShells."x86_64-linux".nvim = with pkgs; mkShell {
       nativeBuildInputs = [
         nixd
