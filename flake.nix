@@ -110,13 +110,14 @@
       modules = [ ./T60.nix ];
     };
 
-    nixosConfigurations.lynx = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+    nixosConfigurations.lynx = let system = "x86_64-linux"; in nixpkgs.lib.nixosSystem {
+      inherit system;
       modules = [
         lynx/configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs.nvim = self.packages.${system}.nvim;
           home-manager.users.dvetutnev = import ./lynx_home.nix;
         }
       ];

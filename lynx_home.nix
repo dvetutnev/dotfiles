@@ -1,13 +1,18 @@
 {
+  imports = [
+    hm_modules/nvim.nix
+    hm_modules/git.nix
+    hm_modules/bat.nix
+    hm_modules/dircolors.nix
+  ];
+
+  programs.bash.enable = true; # for env var and aliases
+
   home.username = "dvetutnev";
   home.homeDirectory = "/home/dvetutnev";
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "Dmitriy Vetutnev";
-    userEmail = "d.vetutnev@gmail.com";
-  };
+
   programs.ssh = {
     enable = true;
     serverAliveInterval = 60;
@@ -30,4 +35,3 @@
     };
   };
 }
-
