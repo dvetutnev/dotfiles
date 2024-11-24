@@ -16,6 +16,9 @@
     google-chrome
     tdesktop
     obsidian
+    # misc
+    file
+    gnomeExtensions.gnome-bedtime
     # fonts
     hackgen-nf-font
     source-code-pro
@@ -43,7 +46,7 @@
       racknerd = {
         hostname = "192.227.172.249";
         user = "dvetutenv";
-        identityFile = "/home/dvetutev/.ssh/racknerd-c9b981";
+        identityFile = "/home/dvetutnev/.ssh/racknerd-c9b981";
       };
     };
   };
