@@ -18,6 +18,7 @@
     obsidian
     # misc
     file
+    tree
     gnomeExtensions.gnome-bedtime
     # fonts
     hackgen-nf-font
