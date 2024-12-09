@@ -20,6 +20,7 @@
     file
     tree
     gnomeExtensions.gnome-bedtime
+    gnomeExtensions.gsconnect
     # fonts
     hackgen-nf-font
     source-code-pro
