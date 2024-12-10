@@ -5,10 +5,6 @@
     url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  inputs.flake-utils = {
-    url = "github:numtide/flake-utils";
-  };
-
   inputs.home-manager = {
     url = "github:nix-community/home-manager";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -20,13 +16,7 @@
     inputs.home-manager.follows = "home-manager";
   };
 
-  inputs.nixgl = {
-    url = "github:guibou/nixGL";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.flake-utils.follows = "flake-utils";
-  };
-
-  outputs = { self, nixpkgs, nixgl, home-manager, nix-on-droid, ... } @inputs:
+  outputs = { self, nixpkgs, home-manager, nix-on-droid, ... } :
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -34,10 +24,7 @@
       config.allowUnfree = true;
     };
 
-    mkNixGLWrapper = pkgs.callPackage ./mkNixGLWrapper.nix {};
-    nixGLWrap = mkNixGLWrapper nixgl.packages.${system}.nixGLIntel;
-
-    cppDevShell = compiler: conan:
+   cppDevShell = compiler: conan:
       pkgs.mkShell.override { stdenv = compiler; } {
         hardeningDisable = [ "all" ];
         nativeBuildInputs = with pkgs; [
@@ -55,30 +42,14 @@
     forAllSystems = f:
       nixpkgs.lib.genAttrs [
         "x86_64-linux"
-	"aarch64-linux"
-      ] (system: f nixpkgs.legacyPackages.${system});
+        "aarch64-linux"
+      ]
+      (system: f nixpkgs.legacyPackages.${system});
   in
   {
-    lib.nixGLWrap = nixGLWrap;
-    lib.homeManagerConfiguration = home-manager.lib.homeManagerConfiguration;
-
     packages = forAllSystems (pkgs: {
       nvim = pkgs.callPackage ./nvim.nix{};
     });
-
-    nixosModules.home = import ./home.nix;
-
-    homeConfigurations."dvetutnev@vulpecula" = self.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {
-        nixGLWrap = self.lib.nixGLWrap;
-        nvim = self.packages.${system}.nvim;
-      };
-      modules = [
-        self.nixosModules.home
-        ./vulpecula.nix
-      ];
-    };
 
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration rec {
       pkgs = import nixpkgs {
