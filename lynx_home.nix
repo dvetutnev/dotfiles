@@ -5,6 +5,7 @@
     hm_modules/git.nix
     hm_modules/bat.nix
     hm_modules/dircolors.nix
+    hm_modules/misc.nix
   ];
 
   programs.bash.enable = true; # for env var and aliases
@@ -16,9 +17,6 @@
     google-chrome
     tdesktop
     obsidian
-    # misc
-    file
-    tree
     gnomeExtensions.gnome-bedtime
     gnomeExtensions.gsconnect
     # fonts
