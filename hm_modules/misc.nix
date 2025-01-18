@@ -7,5 +7,6 @@
     file
     tree
     curl
+    gawk
   ];
 }
