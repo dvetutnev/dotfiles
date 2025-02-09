@@ -24,6 +24,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  services.resolved.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -57,7 +58,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
