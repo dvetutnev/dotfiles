@@ -27,7 +27,7 @@
   in
   {
     packages = forAllSystems (pkgs: {
-      nvim = pkgs.callPackage ./nvim.nix{};
+      nvim = pkgs.callPackage ./nvim.nix {};
     });
 
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration rec {
@@ -36,7 +36,7 @@
         config.allowUnfree = true;
       };
       extraSpecialArgs = {
-        nvim = pkgs.callPackage ./nvim.nix {};
+        nvim = self.packages."aarch64-linux".nvim;
       };
       modules = [ ./T60.nix ];
     };
