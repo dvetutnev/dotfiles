@@ -10,13 +10,23 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.emacs-overlay = {
+    url = "github:nix-community/emacs-overlay";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   inputs.nix-on-droid = {
     url = "github:nix-community/nix-on-droid/release-24.05";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.home-manager.follows = "home-manager";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-on-droid, ... } :
+  nixConfig = {
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+  };
+
+  outputs = { self, nixpkgs, home-manager, emacs-overlay, nix-on-droid, ... } :
   let
     forAllSystems = f:
       nixpkgs.lib.genAttrs [
@@ -34,6 +44,7 @@
       pkgs = import nixpkgs {
         system = "aarch64-linux";
         config.allowUnfree = true;
+        overlays = [ emacs-overlay.overlay ];
       };
       extraSpecialArgs = {
         nvim = self.packages."aarch64-linux".nvim;
@@ -45,6 +56,12 @@
       inherit system;
       modules = [
         lynx/configuration.nix
+        {
+          nixpkgs = {
+            config.allowUnfree = true;
+            overlays = [ emacs-overlay.overlay ];
+          };
+        }
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

@@ -41,6 +41,7 @@
         hm_modules/bat.nix
         hm_modules/dircolors.nix
         hm_modules/misc.nix
+        hm_modules/emcas.nix
       ];
 
       programs.bash.enable = true;
