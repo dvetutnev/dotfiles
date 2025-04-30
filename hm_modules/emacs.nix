@@ -2,6 +2,9 @@
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-unstable-nox;
+    package = pkgs.emacsWithPackagesFromUsePackage {
+      package = pkgs.emacs-unstable-nox;
+      config = ../emacs.el;
+    };
   };
 }
