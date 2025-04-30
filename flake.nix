@@ -43,11 +43,10 @@
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration rec {
       pkgs = import nixpkgs {
         system = "aarch64-linux";
-        config.allowUnfree = true;
-        overlays = [ emacs-overlay.overlay ];
       };
       extraSpecialArgs = {
         nvim = self.packages."aarch64-linux".nvim;
+        inherit emacs-overlay;
       };
       modules = [ ./T60.nix ];
     };

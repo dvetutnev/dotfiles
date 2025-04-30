@@ -2,6 +2,7 @@
 , lib
 , pkgs
 , nvim
+, emacs-overlay
 , ... }:
 
 {
@@ -43,6 +44,11 @@
         hm_modules/misc.nix
         hm_modules/emacs.nix
       ];
+
+      nixpkgs = {
+        config.allowUnfree = true;
+        overlays = [ emacs-overlay.overlay ];
+      };
 
       programs.bash.enable = true;
 
