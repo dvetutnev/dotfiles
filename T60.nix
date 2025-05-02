@@ -51,6 +51,9 @@
       };
 
       programs.bash.enable = true;
+      programs.bash.sessionVariables = {
+        PS1 = "\n\\[\\033[1;32m\\][\\[\\e]0;\\u@\\h: \\w\\a\\]\\u@\\h:\\w]\$\\[\\033[0m\\]";
+      };
 
       programs.ssh = {
         enable = true;
