@@ -10,3 +10,6 @@
   :mode "\\.nix\\'")
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+(use-package vterm
+  :ensure t)
