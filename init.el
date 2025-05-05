@@ -9,6 +9,9 @@
   :ensure t
   :mode "\\.nix\\'")
 
+(use-package clojure-ts-mode
+  :ensure t)
+
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (use-package vterm
