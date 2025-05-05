@@ -8,3 +8,5 @@
 (use-package nix-mode
   :ensure t
   :mode "\\.nix\\'")
+
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
