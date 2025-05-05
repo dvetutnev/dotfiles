@@ -12,6 +12,9 @@
 (use-package clojure-ts-mode
   :ensure t)
 
+(use-package cider
+  :ensure t)
+
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (use-package vterm
