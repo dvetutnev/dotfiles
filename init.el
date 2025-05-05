@@ -5,7 +5,7 @@
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
-(use-package nix-mode
+(use-package nix-ts-mode
   :ensure t
   :mode "\\.nix\\'")
 
