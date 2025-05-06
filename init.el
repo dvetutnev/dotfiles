@@ -17,5 +17,9 @@
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+(use-package markdown-ts-mode
+  :ensure t
+  :mode "\\.md\\'")
+
 (use-package vterm
   :ensure t)
