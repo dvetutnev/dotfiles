@@ -7,6 +7,7 @@
     hm_modules/dircolors.nix
     hm_modules/misc.nix
     hm_modules/emacs.nix
+    hm_modules/clojure.nix
   ];
 
   programs.bash.enable = true; # for env var and aliases

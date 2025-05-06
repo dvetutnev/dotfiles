@@ -43,6 +43,7 @@
         hm_modules/dircolors.nix
         hm_modules/misc.nix
         hm_modules/emacs.nix
+        hm_modules/clojure.nix
       ];
 
       nixpkgs = {
