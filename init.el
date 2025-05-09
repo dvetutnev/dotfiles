@@ -8,6 +8,8 @@
 (if (display-graphic-p)
   (set-face-attribute 'default nil :height 120))
 
+(use-package nix-mode
+  :ensure t)
 (use-package nix-ts-mode
   :ensure t
   :mode "\\.nix\\'")
