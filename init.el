@@ -5,6 +5,9 @@
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
+(if (display-graphic-p)
+  (set-face-attribute 'default nil :height 120))
+
 (use-package nix-ts-mode
   :ensure t
   :mode "\\.nix\\'")
