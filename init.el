@@ -20,6 +20,9 @@
 (use-package cider
   :ensure t)
 
+(use-package magit
+  :ensure t)
+
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (use-package markdown-ts-mode
