@@ -5,8 +5,9 @@
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
-(if (display-graphic-p)
-  (set-face-attribute 'default nil :height 120))
+(when (display-graphic-p)
+  (set-face-attribute 'default nil :height 120)
+  (tool-bar-mode -1))
 
 (use-package nix-mode
   :ensure t)
