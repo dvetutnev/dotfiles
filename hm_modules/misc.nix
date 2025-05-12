@@ -8,5 +8,6 @@
     tree
     curl
     gawk
+    nixfmt
   ];
 }
