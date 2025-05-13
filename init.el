@@ -10,10 +10,9 @@
   (tool-bar-mode -1))
 
 (use-package nix-mode
-  :ensure t)
-(use-package nix-ts-mode
   :ensure t
-  :mode "\\.nix\\'")
+  :mode "\\.nix\\'"
+  :config (add-hook 'before-save-hook 'nix-format-before-save))
 
 (use-package clojure-ts-mode
   :ensure t)
