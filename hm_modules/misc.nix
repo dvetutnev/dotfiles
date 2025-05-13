@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 
 {
@@ -8,6 +9,6 @@
     tree
     curl
     gawk
-    nixfmt
+    nixfmt-rfc-style
   ];
 }
