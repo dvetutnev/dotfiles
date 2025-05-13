@@ -15,19 +15,24 @@
   :config (add-hook 'before-save-hook 'nix-format-before-save))
 
 (use-package clojure-ts-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package cider
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (use-package markdown-ts-mode
   :ensure t
-  :mode "\\.md\\'")
+  :mode "\\.md\\'"
+  :defer t)
 
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :defer t)
