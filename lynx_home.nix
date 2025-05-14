@@ -8,6 +8,7 @@
     hm_modules/misc.nix
     hm_modules/emacs.nix
     hm_modules/clojure.nix
+    hm_modules/ipython.nix
   ];
 
   programs.bash.enable = true; # for env var and aliases
@@ -22,6 +23,7 @@
     gnomeExtensions.gnome-bedtime
     gnomeExtensions.gsconnect
     wireguard-tools
+    jq
     # fonts
     hackgen-nf-font
     source-code-pro
