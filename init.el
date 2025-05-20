@@ -1,4 +1,4 @@
-(use-package solarized-theme
+ (use-package solarized-theme
   :ensure t)
 (load-theme 'solarized-selenized-dark t)
 
@@ -11,6 +11,7 @@
 
 (use-package nix-mode
   :ensure t
+  :defer t
   :mode "\\.nix\\'"
   :config (add-hook 'before-save-hook 'nix-format-before-save))
 
@@ -18,11 +19,20 @@
   :ensure t
   :defer t)
 
+(use-package lua-mode
+  :ensure t
+  :defer t
+  :mode "\\.lua\\'")
+
 (use-package cider
   :ensure t
   :defer t)
 
 (use-package magit
+  :ensure t
+  :defer t)
+
+(use-package pandoc-mode
   :ensure t
   :defer t)
 
