@@ -10,5 +10,6 @@
     curl
     gawk
     nixfmt-rfc-style
+    jq
   ];
 }

@@ -23,7 +23,6 @@
     gnomeExtensions.gnome-bedtime
     gnomeExtensions.gsconnect
     wireguard-tools
-    jq
     # fonts
     hackgen-nf-font
     source-code-pro
