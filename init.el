@@ -19,14 +19,14 @@
   :ensure t
   :defer t)
 
+(use-package cider
+  :ensure t
+  :defer t)
+
 (use-package lua-mode
   :ensure t
   :defer t
   :mode "\\.lua\\'")
-
-(use-package cider
-  :ensure t
-  :defer t)
 
 (use-package magit
   :ensure t

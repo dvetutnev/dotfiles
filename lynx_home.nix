@@ -8,7 +8,6 @@
     hm_modules/misc.nix
     hm_modules/emacs.nix
     hm_modules/clojure.nix
-    hm_modules/ipython.nix
   ];
 
   programs.bash.enable = true; # for env var and aliases
