@@ -5,6 +5,8 @@
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 (when (display-graphic-p)
   (set-face-attribute 'default nil :height 120)
   (tool-bar-mode -1))
