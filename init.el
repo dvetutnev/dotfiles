@@ -5,6 +5,10 @@
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
+(use-package all-the-icons
+  :ensure t
+  :defer t)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (when (display-graphic-p)
