@@ -10,6 +10,7 @@
   :defer t)
 
 (fset 'yes-or-no-p 'y-or-n-p)
+(setq-default frame-title-format "%b (%f)")
 
 (when (display-graphic-p)
   (set-face-attribute 'default nil :height 120)
