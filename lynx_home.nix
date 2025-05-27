@@ -22,6 +22,7 @@
     gnomeExtensions.gnome-bedtime
     gnomeExtensions.gsconnect
     wireguard-tools
+    whatsapp-for-linux
     # fonts
     hackgen-nf-font
     source-code-pro
