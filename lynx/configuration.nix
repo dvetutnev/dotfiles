@@ -95,10 +95,13 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
