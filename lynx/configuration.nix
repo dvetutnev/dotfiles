@@ -5,16 +5,17 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-d09d358a-6303-462a-b652-a3b341a26705".device = "/dev/disk/by-uuid/d09d358a-6303-462a-b652-a3b341a26705";
+  boot.initrd.luks.devices."luks-d09d358a-6303-462a-b652-a3b341a26705".device =
+    "/dev/disk/by-uuid/d09d358a-6303-462a-b652-a3b341a26705";
   networking.hostName = "lynx"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -83,9 +84,9 @@
   users.users.dvetutnev = {
     isNormalUser = true;
     description = "Dmitriy Vetutnev";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
   };
 
@@ -94,13 +95,16 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
