@@ -87,14 +87,14 @@
           ];
         };
 
-      nixosConfigurations."kysa" =
+      nixosConfigurations.kysa =
         let
           system = "x86_64-linux";
         in
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./kysa.me/configuration.nix
+            kysa/configuration.nix
             {
               nixpkgs = {
                 config.allowUnfree = true;

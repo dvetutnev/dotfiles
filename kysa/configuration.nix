@@ -199,9 +199,13 @@
   # From Docker container to MySQL on localhost
   networking.firewall.interfaces."docker0".allowedTCPPorts = [ 3306 ];
 
-  nix.settings.auto-optimise-store = true;
-
-  system.copySystemConfiguration = true;
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
