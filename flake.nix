@@ -87,7 +87,7 @@
           ];
         };
 
-      nixosConfigurations."kysa.me" =
+      nixosConfigurations."kysa" =
         let
           system = "x86_64-linux";
         in
