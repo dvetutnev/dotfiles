@@ -94,7 +94,7 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            kysa.me/configuration.nix
+            ./kysa.me/configuration.nix
             {
               nixpkgs = {
                 config.allowUnfree = true;
