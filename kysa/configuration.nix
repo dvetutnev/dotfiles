@@ -64,6 +64,7 @@
   environment.systemPackages = with pkgs; [
     bat
     bat-extras.batdiff
+    git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
