@@ -21,6 +21,7 @@
     obsidian
     gnomeExtensions.gnome-bedtime
     gnomeExtensions.gsconnect
+    eog # Gnome image viewer
     wireguard-tools
     whatsapp-for-linux
     # fonts
