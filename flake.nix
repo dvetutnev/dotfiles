@@ -36,7 +36,7 @@
       emacs-overlay,
       nix-on-droid,
       ...
-    }:
+    }@inputs:
     let
       forAllSystems =
         f:
@@ -56,7 +56,7 @@
         };
         extraSpecialArgs = {
           nvim = self.packages."aarch64-linux".nvim;
-          inherit emacs-overlay;
+          inherit emacs-overlay inputs;
         };
         modules = [ ./T60.nix ];
       };

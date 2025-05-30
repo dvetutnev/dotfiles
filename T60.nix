@@ -4,6 +4,7 @@
   pkgs,
   nvim,
   emacs-overlay,
+  inputs,
   ...
 }:
 
@@ -23,9 +24,12 @@
   system.stateVersion = "24.05";
 
   # Set up nix for flakes
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  nix = {
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  };
 
   terminal.colors = {
     background = "#002B36";
