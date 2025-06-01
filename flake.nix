@@ -72,7 +72,10 @@
             {
               nixpkgs = {
                 config.allowUnfree = true;
-                overlays = [ emacs-overlay.overlay ];
+                overlays = [
+                  emacs-overlay.overlay
+                  (import ./emacs-custom.nix)
+                ];
               };
             }
             home-manager.nixosModules.home-manager
