@@ -21,6 +21,7 @@
     obsidian
     gnomeExtensions.gnome-bedtime
     gnomeExtensions.gsconnect
+    gnomeExtensions.openmeteoweather
     eog # Gnome image viewer
     wireguard-tools
     whatsapp-for-linux
@@ -28,6 +29,7 @@
     # fonts
     hackgen-nf-font
     source-code-pro
+    nixd
   ];
 
   home.username = "dvetutnev";
