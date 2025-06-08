@@ -20,7 +20,8 @@
   :ensure t
   :defer t
   :mode "\\.nix\\'"
-  :config (add-hook 'before-save-hook 'nix-format-before-save))
+  :hook (before-save-hook . nix-format-before-save))
+;  :config (add-hook 'before-save-hook 'nix-format-before-save))
 
 (use-package clojure-ts-mode
   :ensure t
