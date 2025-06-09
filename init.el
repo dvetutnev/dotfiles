@@ -16,11 +16,20 @@
   (set-face-attribute 'default nil :height 120)
   (tool-bar-mode -1))
 
+
+
+(use-package lsp-mode
+  :ensure t
+  :init (setq lsp-format-buffer-on-save t))
+
 (use-package nix-mode
+  :after lsp-mode
   :ensure t
   :defer t
   :mode "\\.nix\\'"
-  :hook (before-save-hook . nix-format-before-save))
+  :hook (nix-mode . lsp-deferred)
+  :config (setq lsp-nix-nixd-server-path "nixd"
+		lsp-nix-nixd-formatting-command [ "nixfmt" ]))
 
 (use-package clojure-ts-mode
   :ensure t
