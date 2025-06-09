@@ -8,6 +8,7 @@
     hm_modules/misc.nix
     hm_modules/emacs.nix
     hm_modules/clojure.nix
+    hm_modules/nixd.nix
   ];
 
   programs.bash.enable = true; # for env var and aliases
@@ -29,7 +30,6 @@
     # fonts
     hackgen-nf-font
     source-code-pro
-    nixd
   ];
 
   home.username = "dvetutnev";

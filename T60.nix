@@ -58,6 +58,7 @@
           hm_modules/misc.nix
           hm_modules/emacs.nix
           hm_modules/clojure.nix
+          hm_modules/nixd.nix
         ];
 
         nixpkgs = {
