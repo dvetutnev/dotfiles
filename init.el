@@ -21,7 +21,6 @@
   :defer t
   :mode "\\.nix\\'"
   :hook (before-save-hook . nix-format-before-save))
-;  :config (add-hook 'before-save-hook 'nix-format-before-save))
 
 (use-package clojure-ts-mode
   :ensure t
