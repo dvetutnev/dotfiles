@@ -16,7 +16,9 @@
   (set-face-attribute 'default nil :height 120)
   (tool-bar-mode -1))
 
-
+(use-package flycheck
+  :ensure t
+  :defer t)
 
 (use-package lsp-mode
   :ensure t
