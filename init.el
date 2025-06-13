@@ -50,10 +50,6 @@
   :ensure t
   :defer t)
 
-(use-package pandoc-mode
-  :ensure t
-  :defer t)
-
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (use-package markdown-ts-mode
