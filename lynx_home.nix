@@ -21,12 +21,10 @@
     tdesktop
     obsidian
     gnomeExtensions.gnome-bedtime
-    gnomeExtensions.gsconnect
     gnomeExtensions.openmeteoweather
     eog # Gnome image viewer
     wireguard-tools
     whatsapp-for-linux
-    pandoc # tmp
     # fonts
     hackgen-nf-font
     source-code-pro

@@ -80,6 +80,15 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs = {
+    gnome-terminal.enable = true;
+    firefox.enable = true;
+    kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dvetutnev = {
     isNormalUser = true;
@@ -89,11 +98,6 @@
       "wheel"
     ];
   };
-
-  programs.gnome-terminal.enable = true;
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   nix.settings = {
     auto-optimise-store = true;
