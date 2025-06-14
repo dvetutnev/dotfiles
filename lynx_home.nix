@@ -24,7 +24,6 @@
 
     gnome-tweaks
     gnome-weather
-    gnomeExtensions.weather-oclock
     gnomeExtensions.weather-or-not
     gnomeExtensions.gnome-bedtime
 
