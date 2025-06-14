@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   imports = [
     hm_modules/nvim.nix
@@ -20,8 +21,13 @@
     google-chrome
     tdesktop
     obsidian
+
+    gnome-tweaks
+    gnome-weather
+    gnomeExtensions.weather-oclock
+    gnomeExtensions.weather-or-not
     gnomeExtensions.gnome-bedtime
-    gnomeExtensions.openmeteoweather
+
     eog # Gnome image viewer
     wireguard-tools
     whatsapp-for-linux
