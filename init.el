@@ -12,6 +12,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq-default frame-title-format "%b (%f)")
 (setq make-backup-files nil)
+(global-set-key (kbd "M-o") 'other-window)
 
 (when (display-graphic-p)
   (set-face-attribute 'default nil :height 120)
