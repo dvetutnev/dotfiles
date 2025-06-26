@@ -1,4 +1,4 @@
- (use-package solarized-theme
+(use-package solarized-theme
   :ensure t)
 (load-theme 'solarized-selenized-dark t)
 
@@ -18,13 +18,18 @@
   (set-face-attribute 'default nil :height 120)
   (tool-bar-mode -1))
 
+(use-package helm
+  :ensure t)
+(helm-mode t)
+
 (use-package flycheck
   :ensure t
   :defer t)
 
 (use-package lsp-mode
   :ensure t
-  :init (setq lsp-format-buffer-on-save t))
+  :init (setq lsp-format-buffer-on-save t
+	      lsp-keymap-prefix "C-c l"))
 
 (use-package nix-mode
   :after lsp-mode
