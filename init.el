@@ -22,6 +22,10 @@
   :ensure t)
 (helm-mode t)
 
+(ido-mode t)
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
+
 (use-package flycheck
   :ensure t
   :defer t)
