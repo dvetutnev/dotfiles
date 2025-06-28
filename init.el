@@ -20,7 +20,7 @@
 
 (use-package helm
   :ensure t)
-(helm-mode t)
+;(helm-mode t)
 
 (ido-mode t)
 (setq ido-everywhere t)
