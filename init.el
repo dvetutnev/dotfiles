@@ -22,9 +22,9 @@
   :ensure t)
 ;(helm-mode t)
 
-(ido-mode t)
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
+(ido-mode t)
 
 (use-package flycheck
   :ensure t
@@ -63,7 +63,7 @@
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-(use-package markdown-ts-mode
+(use-package markdown-mode
   :ensure t
   :mode "\\.md\\'"
   :defer t)
