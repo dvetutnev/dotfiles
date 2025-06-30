@@ -120,19 +120,7 @@
     configDir = "/home/dvetutnev/.config/syncthing";
   };
 
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-    settings = {
-      mysqld = {
-        bind-address = "172.17.0.1";
-      };
-    };
-  };
-
   services.fail2ban.enable = true;
-
-  virtualisation.docker.enable = true;
 
   # enable NAT
   networking.nat.enable = true;
