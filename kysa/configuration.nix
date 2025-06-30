@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  blog,
+  ...
+}:
 
 {
   imports = [
@@ -89,7 +94,6 @@
   # Frontend Nginx
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "d.vetutnev@gmail.com";
-  security.acme.certs."kysa.me".extraDomainNames = [ "static.kysa.me" ];
   services.nginx = {
     enable = true;
 
@@ -102,20 +106,8 @@
       "kysa.me" = {
         forceSSL = true;
         enableACME = true;
-        locations."/ghost/" = {
-          extraConfig = "allow 10.100.0.0/24;" + "deny all;";
-          proxyPass = "http://127.0.0.1:2368";
-        };
         locations."/" = {
-          proxyPass = "http://127.0.0.1:2368";
-        };
-      };
-
-      "static.kysa.me" = {
-        forceSSL = true;
-        useACMEHost = "kysa.me";
-        locations."/" = {
-          root = "/var/www/static";
+          root = blog.packages.${pkgs.system}.default;
         };
       };
     };

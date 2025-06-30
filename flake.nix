@@ -21,6 +21,11 @@
     inputs.home-manager.follows = "home-manager";
   };
 
+  inputs.blog = {
+    url = "github:dvetutnev/kysa.me";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   nixConfig = {
     extra-substituters = [ "https://nix-community.cachix.org" ];
     extra-trusted-public-keys = [
@@ -35,6 +40,7 @@
       home-manager,
       emacs-overlay,
       nix-on-droid,
+      blog,
       ...
     }@inputs:
     let
@@ -101,8 +107,8 @@
                 overlays = [ emacs-overlay.overlay ];
               };
             }
-
           ];
+          specialArgs = { inherit blog; };
         };
     };
 }
