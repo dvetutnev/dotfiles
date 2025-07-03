@@ -18,6 +18,13 @@
   (set-face-attribute 'default nil :height 120)
   (tool-bar-mode -1))
 
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(save-place-mode t)
+
+(use-package rainbow-delimiters
+  :ensure t
+  :hook prog-mode)
+
 (use-package helm
   :ensure t)
 ;(helm-mode t)
@@ -60,8 +67,6 @@
 (use-package magit
   :ensure t
   :defer t)
-
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (use-package markdown-mode
   :ensure t
