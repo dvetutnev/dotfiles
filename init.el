@@ -25,6 +25,16 @@
   :ensure t
   :hook prog-mode)
 
+(use-package paredit
+  :ensure t
+  :hook ((emacs-lisp-mode
+	  eval-expression-minibuffer-setup
+	  ielm-mode
+	  lisp-mode
+	  lisp-interaction-mode
+	  scheme-mode
+	  clojure-mode) . paredit-mode))
+
 (use-package helm
   :ensure t)
 ;(helm-mode t)
@@ -51,9 +61,10 @@
   :config (setq lsp-nix-nixd-server-path "nixd"
 		lsp-nix-nixd-formatting-command [ "nixfmt" ]))
 
-(use-package clojure-ts-mode
+(use-package clojure-mode
   :ensure t
-  :defer t)
+  :defer t
+  :mode "\\.clj\\'")
 
 (use-package cider
   :ensure t
