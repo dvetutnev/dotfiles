@@ -62,9 +62,11 @@
 		lsp-nix-nixd-formatting-command [ "nixfmt" ]))
 
 (use-package clojure-mode
+  :after lsp-mode
   :ensure t
   :defer t
-  :mode "\\.clj\\'")
+  :mode "\\.clj\\'"
+  :hook (clojure-mode . lsp-deferred))
 
 (use-package cider
   :ensure t
