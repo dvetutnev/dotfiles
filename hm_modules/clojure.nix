@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 
 {
@@ -7,6 +8,7 @@
     clojure
     leiningen
     clojure-lsp
+    cljfmt
     jdk_headless
   ];
 }

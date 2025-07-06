@@ -36,12 +36,13 @@
 	  clojure-mode) . paredit-mode))
 
 (use-package helm
-  :ensure t)
-;(helm-mode t)
+  :ensure t
+  :defer t)
 
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
 (ido-mode t)
+(define-key (current-global-map) [remap bookmark-jump] 'ido-bookmark-jump)
 
 (use-package flycheck
   :ensure t
@@ -51,6 +52,10 @@
   :ensure t
   :init (setq lsp-format-buffer-on-save t
 	      lsp-keymap-prefix "C-c l"))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
 
 (use-package nix-mode
   :after lsp-mode
