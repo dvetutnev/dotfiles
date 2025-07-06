@@ -15,7 +15,8 @@
 (global-set-key (kbd "M-o") 'other-window)
 
 (when (display-graphic-p)
-  (set-face-attribute 'default nil :height 120)
+  (set-face-attribute 'default nil :height 130)
+  (set-face-attribute 'default nil :font "HackGen Console NF")
   (tool-bar-mode -1))
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
