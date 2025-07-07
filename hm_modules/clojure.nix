@@ -9,6 +9,7 @@
     leiningen
     clojure-lsp
     cljfmt
+    clj-kondo
     jdk_headless
   ];
 }

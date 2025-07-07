@@ -74,6 +74,25 @@
   :ensure t
   :commands lsp-ui-mode)
 
+(use-package treemacs
+  :ensure t
+  :defer t)
+
+(use-package lsp-treemacs
+  :ensure t
+  :defer t
+  :commands lsp-treemacs-error-list)
+
+(use-package helm-lsp
+  :ensure t
+  :defer
+  :commands helm-lsp-workspace-symbol)
+(define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
+
+(use-package company
+  :ensure t
+  :defer t)
+
 (use-package nix-mode
   :after lsp-mode
   :ensure t
