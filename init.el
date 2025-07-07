@@ -34,7 +34,8 @@
 	  lisp-mode
 	  lisp-interaction-mode
 	  scheme-mode
-	  clojure-mode) . paredit-mode))
+	  clojure-mode
+	  cider-repl-mode) . paredit-mode))
 
 (use-package helm
   :ensure t
