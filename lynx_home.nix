@@ -61,4 +61,9 @@
       };
     };
   };
+
+  home.shellAliases = {
+    wgup = "sudo wg-quick up /home/dvetutnev/wg.kysa.me.conf";
+    wgdown = "sudo wg-quick down /home/dvetutnev/wg.kysa.me.conf";
+  };
 }
