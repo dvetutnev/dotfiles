@@ -89,9 +89,23 @@
   :commands helm-lsp-workspace-symbol)
 (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
 
+(use-package helm-xref
+  :ensure t
+  :defer t)
+
+(use-package dap-mode
+  :ensure t
+  :defer t)
+
 (use-package company
   :ensure t
   :defer t)
+
+(add-hook 'c-mode-hook 'lsp-deferred)
+(add-hook 'c++-mode-hook 'lsp-deferred)
+
+(add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-ts-mode))
+(add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-ts-mode))
 
 (use-package nix-mode
   :after lsp-mode
