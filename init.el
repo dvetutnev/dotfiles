@@ -35,7 +35,8 @@
 	  lisp-interaction-mode
 	  scheme-mode
 	  clojure-mode
-	  cider-repl-mode) . paredit-mode))
+	  cider-repl-mode
+	  json-mode) . paredit-mode))
 
 (use-package helm
   :ensure t
@@ -142,6 +143,10 @@
 (use-package markdown-mode
   :ensure t
   :mode "\\.md\\'"
+  :defer t)
+
+(use-package json-mode
+  :ensure t
   :defer t)
 
 (use-package vterm
