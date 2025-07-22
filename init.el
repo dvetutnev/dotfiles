@@ -39,7 +39,9 @@
 
 (use-package helm
   :ensure t
-  :defer t)
+  :defer t
+  :config (setq helm-mode-fuzzy-match t))
+;(helm-mode t)
 
 
 (setq ido-everywhere t)
@@ -56,7 +58,8 @@
    (bookmark-get-bookmark
     (ido-completing-read "find bookmark: " (bookmark-all-names)))))
 
-(provide 'ido-bookmark-jump)
+
+;(provide 'ido-bookmark-jump)
 
 (define-key (current-global-map) [remap bookmark-jump] 'ido-bookmark-jump)
 
