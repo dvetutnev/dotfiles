@@ -59,6 +59,7 @@
           hm_modules/emacs.nix
           hm_modules/clojure.nix
           hm_modules/nixd.nix
+          hm_modules/cmake-aliases.nix
         ];
 
         nixpkgs = {

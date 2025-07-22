@@ -10,6 +10,7 @@
     hm_modules/emacs.nix
     hm_modules/clojure.nix
     hm_modules/nixd.nix
+    hm_modules/cmake-aliases.nix
   ];
 
   programs.bash.enable = true; # for env var and aliases
@@ -33,6 +34,8 @@
     # fonts
     hackgen-nf-font
     source-code-pro
+
+    qtcreator
   ];
 
   home.username = "dvetutnev";
