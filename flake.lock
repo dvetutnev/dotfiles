@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753798162,
-        "narHash": "sha256-yQg34sPigByTBU4NpFeSTqXqet6TL0DHNHJbwIIYxyU=",
+        "lastModified": 1753970970,
+        "narHash": "sha256-Q+i8ULco8hEOIRFBvwkLGb6st0C+gj5QYj187Jov3Aw=",
         "owner": "dvetutnev",
         "repo": "kysa.me",
-        "rev": "e8f06c6421914b1fab8fb3a4324910d85b066271",
+        "rev": "e2d9489eb829eed75f3bf70491252a1223852e74",
         "type": "github"
       },
       "original": {
