@@ -11,5 +11,6 @@
     gawk
     nixfmt-rfc-style
     jq
+    xxd
   ];
 }
