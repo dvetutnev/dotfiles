@@ -11,6 +11,7 @@
     hm_modules/clojure.nix
     hm_modules/nixd.nix
     hm_modules/cmake-aliases.nix
+    hm_modules/mitscheme.nix
   ];
 
   programs.bash.enable = true; # for env var and aliases
