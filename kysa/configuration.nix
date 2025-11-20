@@ -23,27 +23,23 @@
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
 
-  networking.hostName = "kysa"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  time.timeZone = "Europe/Moscow";
 
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.ens3.ipv4.addresses = [
-    {
-      address = "109.107.177.145";
-      prefixLength = 24;
-    }
-  ];
-  networking.defaultGateway = "109.107.177.1";
-  networking.nameservers = [
-    "8.8.8.8"
-    "1.1.1.1"
-  ];
+  networking = {
+    hostName = "kysa"; # Define your hostname.
+    useDHCP = false;
+    interfaces.ens3.ipv4.addresses = [
+      {
+        address = "185.209.28.178";
+        prefixLength = 24;
+      }
+    ];
+    defaultGateway = "185.209.28.1";
+    nameservers = [
+      "8.8.8.8"
+      "1.1.1.1"
+    ];
+  };
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
