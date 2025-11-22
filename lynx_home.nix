@@ -58,6 +58,11 @@
         user = "dvetutnev";
         identityFile = "/home/dvetutnev/.ssh/nixos.vdsina";
       };
+      "wg.kysa" = {
+        hostname = "wg.kysa.me";
+        user = "dvetutnev";
+        identityFile = "/home/dvetutnev/.ssh/wg.kysa";
+      };
       racknerd = {
         hostname = "192.227.172.249";
         user = "dvetutenv";
