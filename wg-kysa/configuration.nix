@@ -86,28 +86,6 @@
     };
   };
 
-  # Frontend Nginx
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "d.vetutnev@gmail.com";
-  services.nginx = {
-    enable = true;
-
-    recommendedGzipSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-
-    virtualHosts = {
-      "kysa.me" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/" = {
-          root = blog.packages.${pkgs.system}.default;
-        };
-      };
-    };
-  };
-
   services.syncthing = {
     enable = true;
     user = "dvetutnev";
