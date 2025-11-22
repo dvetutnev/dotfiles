@@ -26,7 +26,7 @@
   time.timeZone = "Europe/Moscow";
 
   networking = {
-    hostName = "wg.kysa"; # Define your hostname.
+    hostName = "wg-kysa"; # Define your hostname.
     useDHCP = false;
     interfaces.ens3.ipv4.addresses = [
       {
