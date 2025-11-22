@@ -55,7 +55,7 @@
       "docker"
     ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHYlIR9XX2nZ8TX3c3e/al7Dnq4z9WZhy7XU4HMy9gPx dvetutnev"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBECaE/KAHisV7ejre7Sz8rBR2sm2ChjjLEHhQW64FVf dvetutnev"
     ];
   };
 
