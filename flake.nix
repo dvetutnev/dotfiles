@@ -111,14 +111,14 @@
           specialArgs = { inherit blog; };
         };
 
-      nixosConfigurations."wg.kysa" =
+      nixosConfigurations.wg-kysa =
         let
           system = "x86_64-linux";
         in
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            kysa/configuration.nix
+            wg-kysa/configuration.nix
             {
               nixpkgs = {
                 config.allowUnfree = true;
