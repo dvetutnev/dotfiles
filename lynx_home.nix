@@ -46,8 +46,10 @@
 
   programs.ssh = {
     enable = true;
-    serverAliveInterval = 60;
     matchBlocks = {
+      "*" = {
+        serverAliveInterval = 60;
+      };
       github = {
         hostname = "github.com";
         user = "git";
