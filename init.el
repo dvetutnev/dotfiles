@@ -17,7 +17,9 @@
 (when (display-graphic-p)
   (set-face-attribute 'default nil :height 130)
   (set-face-attribute 'default nil :font "HackGen Console NF")
-  (tool-bar-mode -1))
+  (tool-bar-mode -1)
+  (pixel-scroll-mode t)
+  (pixel-scroll-precision-mode))
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (save-place-mode t)
