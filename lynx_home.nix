@@ -58,7 +58,7 @@
         user = "dvetutnev";
         identityFile = "/home/dvetutnev/.ssh/nixos.vdsina";
       };
-      "wg.kysa" = {
+      wg-kysa = {
         hostname = "wg.kysa.me";
         user = "dvetutnev";
         identityFile = "/home/dvetutnev/.ssh/wg.kysa";
