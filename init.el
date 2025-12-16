@@ -105,7 +105,8 @@
 
 (use-package company
   :ensure t
-  :defer t)
+  :defer t
+  :init (setq company-idle-delay 0.9))
 
 (add-hook 'c-mode-hook 'lsp-deferred)
 (add-hook 'c++-mode-hook 'lsp-deferred)
