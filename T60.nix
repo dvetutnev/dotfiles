@@ -76,13 +76,13 @@
         programs.ssh = {
           enable = true;
           package = pkgs.openssh;
-          serverAliveInterval = 60;
           matchBlocks = {
             "github.com" = {
               hostname = "github.com";
               user = "git";
               identityFile = "/data/data/com.termux.nix/files/home/.ssh/github.ed25519";
               identitiesOnly = true;
+              serverAliveInterval = 60;
             };
           };
         };
