@@ -1,9 +1,9 @@
 {
   programs.git = {
     enable = true;
-    userName = "Dmitriy Vetutnev";
-    userEmail = "d.vetutnev@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Dmitriy Vetutnev";
+      user.email = "d.vetutnev@gmail.com";
       merge.conflictstyle = "diff3";
     };
   };
