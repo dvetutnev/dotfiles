@@ -21,7 +21,10 @@
   home.packages = with pkgs; [
     keepassxc
     google-chrome
-    tdesktop
+
+    telegram-desktop
+    wasistlos
+
     obsidian
 
     gnome-tweaks
@@ -31,7 +34,6 @@
 
     eog # Gnome image viewer
     wireguard-tools
-    whatsapp-for-linux
     # fonts
     hackgen-nf-font
     source-code-pro
