@@ -75,6 +75,7 @@
 
         programs.ssh = {
           enable = true;
+          package = pkgs.openssh;
           matchBlocks = {
             "github.com" = {
               hostname = "github.com";
