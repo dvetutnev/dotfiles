@@ -21,6 +21,7 @@
   home.packages = with pkgs; [
     keepassxc
     google-chrome
+    transmission_4-gtk
 
     telegram-desktop
     wasistlos
