@@ -68,10 +68,10 @@
         user = "dvetutnev";
         identityFile = "/home/dvetutnev/.ssh/wg.kysa";
       };
-      racknerd = {
-        hostname = "192.227.172.249";
-        user = "dvetutenv";
-        identityFile = "/home/dvetutnev/.ssh/racknerd-c9b981";
+      rpi5 = {
+        hostname = "192.168.31.203";
+        user = "dvetutnev";
+        identityFile = "/home/dvetutnev/.ssh/rpi5.ed25519";
       };
     };
   };
