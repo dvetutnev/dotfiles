@@ -26,10 +26,19 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.nixos-raspberrypi = {
+    url = "github:nvmd/nixos-raspberrypi/main";
+    #inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://nixos-raspberrypi.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
     ];
   };
 
@@ -41,6 +50,7 @@
       emacs-overlay,
       nix-on-droid,
       blog,
+      nixos-raspberrypi,
       ...
     }@inputs:
     let
@@ -93,6 +103,25 @@
           ];
         };
 
+      nixosConfigurations.rpi5 = nixos-raspberrypi.lib.nixosSystem {
+        specialArgs = { inherit nixos-raspberrypi inputs; };
+        modules = [
+          rpi5/configuration.nix
+          {
+            nixpkgs = {
+              config.allowUnfre = true;
+              overlays = [ emacs-overlay.overlay ];
+            };
+          }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.dvetutnev = import rpi5/home.nix;
+          }
+        ];
+      };
+
       nixosConfigurations.kysa =
         let
           system = "x86_64-linux";
@@ -126,5 +155,6 @@
             }
           ];
         };
+
     };
 }
