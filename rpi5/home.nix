@@ -13,6 +13,10 @@
 
   home.packages = with pkgs; [
     hackgen-nf-font
+    gnome-tweaks
+    dconf-editor
+    gnome-terminal
+    chromium
   ];
 
   home.username = "dvetutnev";

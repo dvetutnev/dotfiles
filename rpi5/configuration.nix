@@ -28,10 +28,6 @@
 
   environment.systemPackages = with pkgs; [
     nano
-    gnome-tweaks
-    dconf-editor
-    gnome-terminal
-    chromium
   ];
 
   # Enable the X11 windowing system.
