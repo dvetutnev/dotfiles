@@ -26,6 +26,14 @@
 
   services.openssh.enable = true;
 
+  services.borgbackup.repos = {
+    borg_server = {
+      authorizedKeys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINztqCZhc11N9IGUFhRjsPG2ll/buUYg3P3CZ69piiul dvetutnev@lynx"
+      ];
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     nano
   ];
