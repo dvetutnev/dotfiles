@@ -40,6 +40,8 @@
     source-code-pro
 
     qtcreator
+
+    borgbackup
   ];
 
   home.username = "dvetutnev";
@@ -72,6 +74,11 @@
         hostname = "192.168.31.203";
         user = "dvetutnev";
         identityFile = "/home/dvetutnev/.ssh/rpi5.ed25519";
+      };
+      borgbackup-rpi5 = {
+        hostname = "192.168.31.203";
+        user = "borg";
+        identityFile = "/home/dvetutnev/.ssh/borgbackup.rpi5.ed25519";
       };
     };
   };
