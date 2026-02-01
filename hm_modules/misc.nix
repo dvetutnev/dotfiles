@@ -9,7 +9,7 @@
     tree
     curl
     gawk
-    nixfmt-rfc-style
+    nixfmt
     jq
     xxd
   ];
