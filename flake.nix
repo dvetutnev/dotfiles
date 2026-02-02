@@ -5,6 +5,10 @@
     url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
+  inputs.nixpkgs_25_11 = {
+    url = "github:nixos/nixpkgs/nixos-25.11";
+  };
+
   inputs.home-manager = {
     url = "github:nix-community/home-manager";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -46,6 +50,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs_25_11,
       home-manager,
       emacs-overlay,
       nix-on-droid,
@@ -67,7 +72,7 @@
       });
 
       nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration rec {
-        pkgs = import nixpkgs {
+        pkgs = import nixpkgs_25_11 {
           system = "aarch64-linux";
         };
         extraSpecialArgs = {
