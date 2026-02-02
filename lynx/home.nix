@@ -52,9 +52,6 @@
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      "*" = {
-        serverAliveInterval = 60;
-      };
       github = {
         hostname = "github.com";
         user = "git";
@@ -64,16 +61,19 @@
         hostname = "kysa.me";
         user = "dvetutnev";
         identityFile = "/home/dvetutnev/.ssh/nixos.vdsina";
+        serverAliveInterval = 60;
       };
       wg-kysa = {
         hostname = "wg.kysa.me";
         user = "dvetutnev";
         identityFile = "/home/dvetutnev/.ssh/wg.kysa";
+        serverAliveInterval = 60;
       };
       rpi5 = {
         hostname = "192.168.31.203";
         user = "dvetutnev";
         identityFile = "/home/dvetutnev/.ssh/rpi5.ed25519";
+        serverAliveInterval = 60;
       };
       borgbackup-rpi5 = {
         hostname = "192.168.31.203";
