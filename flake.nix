@@ -98,7 +98,7 @@
               home-manager.extraSpecialArgs = {
                 nvim = self.packages.${system}.nvim;
               };
-              home-manager.users.dvetutnev = import ./lynx_home.nix;
+              home-manager.users.dvetutnev = import lynx/home.nix;
             }
           ];
         };

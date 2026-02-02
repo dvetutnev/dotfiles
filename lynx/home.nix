@@ -2,16 +2,16 @@
 
 {
   imports = [
-    hm_modules/nvim.nix
-    hm_modules/git.nix
-    hm_modules/bat.nix
-    hm_modules/dircolors.nix
-    hm_modules/misc.nix
-    hm_modules/emacs.nix
-    hm_modules/clojure.nix
-    hm_modules/nixd.nix
-    hm_modules/cmake-aliases.nix
-    hm_modules/mitscheme.nix
+    ../hm_modules/nvim.nix
+    ../hm_modules/git.nix
+    ../hm_modules/bat.nix
+    ../hm_modules/dircolors.nix
+    ../hm_modules/misc.nix
+    ../hm_modules/emacs.nix
+    ../hm_modules/clojure.nix
+    ../hm_modules/nixd.nix
+    ../hm_modules/cmake-aliases.nix
+    ../hm_modules/mitscheme.nix
   ];
 
   programs.bash.enable = true; # for env var and aliases
