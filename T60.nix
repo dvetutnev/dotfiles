@@ -61,6 +61,7 @@
           hm_modules/clojure.nix
           hm_modules/nixd.nix
           hm_modules/cmake-aliases.nix
+          hm_modules/mitscheme.nix
         ];
 
         nixpkgs = {
