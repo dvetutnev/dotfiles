@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770025587,
-        "narHash": "sha256-OGQyJM2KvzMKDuu9ASe8r//9tzGn5k/FXUo/TA02QE4=",
+        "lastModified": 1770299545,
+        "narHash": "sha256-xTgb6Qh/Uj427MXcaFWxF7nFdv7+n0/+fwkPHCxrWw4=",
         "owner": "dvetutnev",
         "repo": "kysa.me",
-        "rev": "7fc67b2e73d4866f4d24255ca89bbb5935b646df",
+        "rev": "5b06a16237a8558c743b695aeb9518bfd3b1e8d9",
         "type": "github"
       },
       "original": {
@@ -271,6 +271,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_25_11": {
+      "locked": {
+        "lastModified": 1770136044,
+        "narHash": "sha256-tlFqNG/uzz2++aAmn4v8J0vAkV3z7XngeIIB3rM3650=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e576e3c9cf9bad747afcddd9e34f51d18c855b4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nmd": {
       "flake": false,
       "locked": {
@@ -332,7 +348,8 @@
         "home-manager": "home-manager",
         "nix-on-droid": "nix-on-droid",
         "nixos-raspberrypi": "nixos-raspberrypi",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "nixpkgs_25_11": "nixpkgs_25_11"
       }
     },
     "scss-reset": {
