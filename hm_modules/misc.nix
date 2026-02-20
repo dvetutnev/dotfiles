@@ -12,5 +12,6 @@
     nixfmt
     jq
     xxd
+    tldr
   ];
 }
