@@ -56,6 +56,7 @@
     ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBECaE/KAHisV7ejre7Sz8rBR2sm2ChjjLEHhQW64FVf dvetutnev"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+Vu/FACITzLi4LCYwhukGTOrHnozFh7evwe0wz9DVz T60"
     ];
   };
 
