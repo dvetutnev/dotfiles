@@ -13,5 +13,7 @@
     jq
     xxd
     tldr
+    unzip
+    zip
   ];
 }
