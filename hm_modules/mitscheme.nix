@@ -1,5 +1,11 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
-  home.packages = [ pkgs.mitscheme ];
+  home.packages = [
+    pkgs.mitscheme
+    pkgs.racket
+  ];
 }

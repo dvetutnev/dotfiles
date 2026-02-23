@@ -160,8 +160,12 @@
   :ensure t
   :defer t)
 
+(use-package geiser-racket
+  :ensure t
+  :defer t)
+
 (defun load-geiser-mit ()
-    "Load geiser-mit from home"
+  "Load geiser-mit from home"
   (interactive)
   (add-to-list 'load-path "~/geiser-mit")
   (require 'geiser-mit))
