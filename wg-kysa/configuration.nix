@@ -152,8 +152,6 @@
     22000 # syncthing
     51820 # wireguard
   ];
-  # From Docker container to MySQL on localhost
-  networking.firewall.interfaces."docker0".allowedTCPPorts = [ 3306 ];
 
   nix.settings = {
     auto-optimise-store = true;
