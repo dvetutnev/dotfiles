@@ -80,6 +80,12 @@
         user = "borg";
         identityFile = "/home/dvetutnev/.ssh/borgbackup.rpi5.ed25519";
       };
+      fin-kysa = {
+        hostname = "fin.kysa.me";
+        user = "dvetutnev";
+        identityFile = "/home/dvetutnev/.ssh/fin.kysa.me";
+        serverAliveInterval = 60;
+      };
     };
   };
 
