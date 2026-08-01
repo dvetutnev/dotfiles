@@ -24,7 +24,6 @@
     transmission_4-gtk
 
     telegram-desktop
-    wasistlos
 
     obsidian
 
@@ -48,6 +47,20 @@
   home.homeDirectory = "/home/dvetutnev";
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
+
+  programs.borgmatic = {
+    enable = true;
+    backups = {
+      sync = {
+        location = {
+          sourceDirectories = [ "/home/dvetutnev/Sync" ];
+          repositories = [ "ssh://borg@borgbackup-rpi5/./." ];
+        };
+        retention.keepWithin = "2d";
+      };
+    };
+  };
+  services.borgmatic.enable = true;
 
   programs.ssh = {
     enable = true;
