@@ -9,7 +9,7 @@ let
       '';
 
       packages.myPlugins.start = with pkgs.vimPlugins; [
-        vim-solarized8
+        #        vim-solarized8
         vim-better-whitespace
       ];
     };
@@ -50,4 +50,4 @@ let
   '';
 
 in
-  neovim
+neovim
