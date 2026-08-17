@@ -144,7 +144,7 @@
         let
           system = "x86_64-linux";
         in
-        nixpkgs_26_05.lib.nixosSystem {
+        nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             kysa/configuration.nix
