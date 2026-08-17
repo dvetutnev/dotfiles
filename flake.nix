@@ -9,6 +9,10 @@
     url = "github:nixos/nixpkgs/nixos-25.11";
   };
 
+  inputs.nixpkgs_26_05 = {
+    url = "github:nixos/nixpkgs/nixos-26.05";
+  };
+
   inputs.home-manager = {
     url = "github:nix-community/home-manager";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -51,6 +55,7 @@
       self,
       nixpkgs,
       nixpkgs_25_11,
+      nixpkgs_26_05,
       home-manager,
       emacs-overlay,
       nix-on-droid,
@@ -115,7 +120,15 @@
           {
             nixpkgs = {
               config.allowUnfre = true;
-              overlays = [ emacs-overlay.overlay ];
+              overlays = [
+                emacs-overlay.overlay
+                (
+                  final: prev:
+                  prev.python-aiohttp.override {
+                    doCheck = false;
+                  }
+                )
+              ];
             };
           }
           home-manager.nixosModules.home-manager
@@ -131,7 +144,7 @@
         let
           system = "x86_64-linux";
         in
-        nixpkgs.lib.nixosSystem {
+        nixpkgs_26_05.lib.nixosSystem {
           inherit system;
           modules = [
             kysa/configuration.nix
