@@ -65,7 +65,7 @@
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      github = {
+      "github.com" = {
         hostname = "github.com";
         user = "git";
         identityFile = "/home/dvetutnev/.ssh/github.ed25519";
