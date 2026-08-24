@@ -14,14 +14,25 @@
   home.packages = with pkgs; [
     hackgen-nf-font
     gnome-tweaks
-    dconf-editor
+    #    dconf-editor
     gnome-terminal
-    chromium
+    #    chromium
   ];
 
   home.username = "dvetutnev";
   home.homeDirectory = "/home/dvetutnev";
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
+
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "github.com" = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = "/home/dvetutnev/.ssh/github.ed25519";
+      };
+    };
+  };
 
 }

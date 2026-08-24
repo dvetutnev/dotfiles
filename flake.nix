@@ -122,12 +122,15 @@
               config.allowUnfre = true;
               overlays = [
                 emacs-overlay.overlay
-                (
-                  final: prev:
-                  prev.python-aiohttp.override {
-                    doCheck = false;
-                  }
-                )
+                (final: prev: {
+                  pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+                    (python-final: python-prev: {
+                      aiohttp = python-prev.aiohttp.overridePythonAttrs (old: {
+                        doCheck = false;
+                      });
+                    })
+                  ];
+                })
               ];
             };
           }

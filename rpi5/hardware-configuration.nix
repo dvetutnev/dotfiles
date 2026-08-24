@@ -7,7 +7,7 @@
     raspberry-pi-5.display-vc4
   ];
 
-  boot.loader.raspberryPi.bootloader = "kernel";
+  #  boot.loader.raspberryPi.bootloader = "kernel";
 
   fileSystems = {
     "/boot/firmware" = {
@@ -30,7 +30,7 @@
   swapDevices = [
     {
       device = "/var/lib/swapfile";
-      size = 8 * 1024;
+      size = 16 * 1024;
     }
   ];
 }
