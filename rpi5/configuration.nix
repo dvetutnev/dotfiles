@@ -17,7 +17,9 @@
   users.users.dvetutnev = {
     isNormalUser = true;
     extraGroups = [
+      "networkmanager"
       "wheel"
+      "dialout"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFNlAOm+vdRwE4h877Y3CFz9CnmDzXaQ6aL5mw8WItUP dvetutnev@lynx"
