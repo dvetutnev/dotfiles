@@ -52,7 +52,7 @@
     enable = true;
     backups = {
       sync = {
-        location = {
+        settings = {
           sourceDirectories = [ "/home/dvetutnev/Sync" ];
           repositories = [ "ssh://borg@borgbackup-rpi5/./." ];
         };
