@@ -52,9 +52,8 @@
   users.users.dvetutnev = {
     isNormalUser = true;
     extraGroups = [
-      "wheel"
-      "docker"
-    ]; # Enable ‘sudo’ for the user.
+      "wheel" # Enable ‘sudo’ for the user.
+    ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHYlIR9XX2nZ8TX3c3e/al7Dnq4z9WZhy7XU4HMy9gPx dvetutnev"
     ];
@@ -118,50 +117,6 @@
 
   services.fail2ban.enable = true;
 
-  # enable NAT
-  networking.nat.enable = true;
-  networking.nat.externalInterface = "ens3";
-  networking.nat.internalInterfaces = [ "wg0" ];
-
-  networking.wireguard.interfaces = {
-    # "wg0" is the network interface name. You can name the interface arbitrarily.
-    wg0 = {
-      # Determines the IP address and subnet of the server's end of the tunnel interface.
-      ips = [ "10.100.0.1/24" ];
-
-      # The port that WireGuard listens to. Must be accessible by the client.
-      listenPort = 51820;
-
-      # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
-      # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
-      postSetup = ''
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o ens3 -j MASQUERADE
-      '';
-
-      # This undoes the above command
-      postShutdown = ''
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o ens3 -j MASQUERADE
-      '';
-
-      privateKey = "uMUdaPUM5d2AF9UbNKPH/e2EEHdFZC3VIDMxRn6CHHI=";
-
-      peers = [
-        # List of allowed peers.
-        {
-          # Feel free to give a meaning full name
-          # Public key of the peer (not a file path).
-          publicKey = "Ceu6BGh88do+xdNMHH0pE6YGkzXXXPA7G8GUvMK0hVA=";
-          # List of IPs assigned to this peer within the tunnel subnet. Used to configure routing.
-          allowedIPs = [ "10.100.0.2/32" ];
-        }
-        {
-          publicKey = "evhkt5ajjtm9uLH2enPJ0mtSFsmD4YCtEmeK52PcESk=";
-          allowedIPs = [ "10.100.0.3/32" ];
-        }
-      ];
-    };
-  };
-
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     22 # ssh
@@ -171,10 +126,7 @@
   ];
   networking.firewall.allowedUDPPorts = [
     22000 # syncthing
-    51820 # wireguard
   ];
-  # From Docker container to MySQL on localhost
-  networking.firewall.interfaces."docker0".allowedTCPPorts = [ 3306 ];
 
   nix.settings = {
     auto-optimise-store = true;
